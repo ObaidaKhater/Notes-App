@@ -19,7 +19,7 @@ class CustomBottomAppBarWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(topLeft: Radius.circular(100))
           ),
-          margin: EdgeInsets.only(right: 110.w,bottom: 10.h,left: 15.w),
+          margin: EdgeInsets.only(right: 115.w,bottom: 10.h,left: 15.w),
           height: 60.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

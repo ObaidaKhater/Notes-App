@@ -16,8 +16,8 @@ class CustomButtonBottomAppBarWidget extends StatelessWidget {
       elevation: 0,
       child: Image.asset(
         this.imagePath,
-        width: 28.w,
-        height: 28.h,
+        width: 27.w,
+        height: 27.h,
         color: Theme.of(context).primaryColor.withOpacity(0.9),
       ),
     );
