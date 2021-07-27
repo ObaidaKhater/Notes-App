@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_app_bar_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_bottom_app_bar_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_floating_action_button_widget.dart';
+import 'package:notes_app/ui/home_page/widgets/custom_gridview_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_search_box_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isGridviewShow = true;
+  bool _isGridviewShow = false;
 
   toggleShowGridview(bool isGridviewShow) {
     _isGridviewShow = !isGridviewShow;
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: CustomFloatingActionButtonWidget(onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       backgroundColor: Theme.of(context).backgroundColor,
-      bottomNavigationBar:CustomBottomAppBarWidget(),
+      bottomNavigationBar: CustomBottomAppBarWidget(),
       key: _scaffoldKey,
       drawer: Drawer(
         elevation: 20,
@@ -40,12 +41,8 @@ class _HomePageState extends State<HomePage> {
               toggleFunction: toggleShowGridview,
               isGridViewShow: _isGridviewShow,
             ),
-            Center(
-              child: Container(
-                color: (_isGridviewShow) ? Colors.red : Colors.white,
-                width: 10,
-                height: 20,
-              ),
+            CustomGridviewWidget(
+              isGridviewShow: _isGridviewShow,
             )
           ],
         ),
