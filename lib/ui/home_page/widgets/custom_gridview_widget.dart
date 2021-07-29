@@ -24,8 +24,8 @@ class CustomGridviewWidget extends StatelessWidget {
               CustomItemGridviewWidget(
             note: NoteData.noteData.getAllNotes()[index],
           ),
-          staggeredTileBuilder: (int index) => StaggeredTile.count(
-              (this.isGridviewShow) ? 4 : 2, index == 0 ? 3 : 4),
+          staggeredTileBuilder: (int index) => StaggeredTile.fit(
+              (this.isGridviewShow) ? 4 : 2)
         ),
       ),
     );

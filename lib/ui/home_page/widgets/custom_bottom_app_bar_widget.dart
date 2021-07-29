@@ -28,7 +28,6 @@ class CustomBottomAppBarWidget extends StatelessWidget {
               CustomButtonBottomAppBarWidget(onPressed: (){}, imagePath: 'assets/icons/mic_icon.png'),
               CustomButtonBottomAppBarWidget(onPressed: (){}, imagePath: 'assets/icons/camera_icon.png'),
               CustomButtonBottomAppBarWidget(onPressed: (){}, imagePath: 'assets/icons/brush_icon.png'),
-
             ],
           ),
         ),

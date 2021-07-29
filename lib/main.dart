@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/ui/add_update_note_page/add_update_note_page.dart';
 import 'package:notes_app/ui/home_page/home_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

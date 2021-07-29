@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/models/note.dart';
+import 'package:notes_app/ui/shared/widgets/custom_check_box_widget.dart';
 
 class CustomItemGridviewWidget extends StatelessWidget {
   Note note;
@@ -30,6 +31,7 @@ class CustomItemGridviewWidget extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           (this.note.imagePath != null)
               ? Container(
@@ -45,106 +47,73 @@ class CustomItemGridviewWidget extends StatelessWidget {
                 )
               : Container(),
           Padding(
-            padding: EdgeInsets.only(
-                top: 20.h, bottom: 10.h, left: 15.w, right: 15.w),
+            padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
             child: Text(
               this.note.title,
               style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold),
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          (this.note.description != null &&
-                  this.note.description.isNotEmpty &&
-                  this.note.itemsCheck == null)
-              ? Expanded(
-                  child: Container(
-                    padding: EdgeInsets.only(left: 15.w, right: 5.w),
-                    child: Text(
-                      this.note.description,
-                      style: TextStyle(
-                          color: (note.colorHexCode!=null)?Color(0xFFC1D3FF):Color(0xFF828A9B),
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w400,textBaseline: TextBaseline.ideographic),
-                    ),
+          (this.note.description != null && this.note.description.isNotEmpty)
+              ? Container(
+                  padding: EdgeInsets.only(left: 15.w, right: 5.w,bottom: 10.h),
+                  child: Text(
+                    this.note.description,
+                    maxLines: (this.note.itemsCheck != null) ? 3 : 25,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: (note.colorHexCode != null)
+                            ? Color(0xFFC1D3FF)
+                            : Color(0xFF828A9B),
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w400),
                   ),
                 )
               : Container(),
           (this.note.itemsCheck != null)
-              ? Expanded(
-                child: Container(
-                    padding: EdgeInsets.only(
-                        bottom: 5.h, left: 15.w, right: 5.w),
-                    child: ListView(
-                      physics: NeverScrollableScrollPhysics(),
-                      children: note.itemsCheck.map((itemCheck) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.h),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: Checkbox(
-                                      side: BorderSide(
-                                          width: 1,
-                                          color: (note.colorHexCode!=null)?Color(0xFFC1D3FF):Color(0xFF828A9B)),
-                                      checkColor: (note.colorHexCode !=
-                                              null)
-                                          ? Colors.black
-                                          : Theme.of(context).primaryColor,
-                                      fillColor: (note.colorHexCode != null)
-                                          ? MaterialStateProperty.all<
-                                              Color>(Colors.white)
-                                          : MaterialStateProperty
-                                              .all<Color>(Theme.of(context)
-                                                  .buttonColor),
-                                      value: itemCheck.isDone,
-                                      shape: CircleBorder(),
-                                      onChanged: null)),
-                              SizedBox(
-                                width: 8.w,
-                              ),
-                              Expanded(
-                                  child: Text(
-                                itemCheck.title,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 15.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: (note.colorHexCode!=null)?Color(0xFFC1D3FF):Color(0xFF828A9B),
-                                  decoration: (itemCheck.isDone)
-                                      ? TextDecoration.lineThrough
-                                      : null,
-                                ),
-                              )),
-                            ],
-                          ),
-                        );
-                      }).toList(),
-                    )
-                    ),
-              )
+              ? Container(
+                  padding: EdgeInsets.only(bottom: 5.h, left: 15.w, right: 5.w),
+                  child: Column(
+                    children: note.itemsCheck.map((itemCheck) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 5.h),
+                        child: CustomCheckBoxWidget(
+                          isDone: itemCheck.isDone,
+                          title: itemCheck.title,
+                          colorHexCode: this.note.colorHexCode,
+                          numLinesTitle: 1,
+                          textOverflowType: TextOverflow.ellipsis,
+                        ),
+                      );
+                    }).toList(),
+                  ))
               : Container(),
           (this.note.category != null)
               ? Visibility(
                   visible: (this.note.category != null),
                   child: Container(
-                    margin:
-                        EdgeInsets.only(top: 10.h ,left: 15.w,right: 15.w),
+                    margin: EdgeInsets.only(top: 10.h, left: 15.w, right: 15.w),
                     padding:
                         EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.r),
-                        border: Border.all(color: (note.colorHexCode!=null)?Color(0xFFC1D3FF):Color(0xFF828A9B))),
+                        border: Border.all(
+                            color: (note.colorHexCode != null)
+                                ? Color(0xFFC1D3FF)
+                                : Color(0xFF828A9B))),
                     child: Text(
                       this.note.category.title,
-                      style:
-                          TextStyle(color: (note.colorHexCode!=null)?Color(0xFFC1D3FF):Color(0xFF828A9B), fontSize: 14.sp),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: (note.colorHexCode != null)
+                              ? Color(0xFFC1D3FF)
+                              : Color(0xFF828A9B),
+                          fontSize: 14.sp),
                     ),
                   ))
               : Container(),
