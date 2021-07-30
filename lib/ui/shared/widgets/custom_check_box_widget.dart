@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 
 class CustomCheckBoxWidget extends StatelessWidget {
   bool isDone;
@@ -21,26 +22,29 @@ class CustomCheckBoxWidget extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-            width: 20.w,
-            height: 20.h,
-            child: Checkbox(
-                side: BorderSide(
-                  width: 1,
-                  color: (this.colorHexCode != null)
-                      ? Color(0xFFC1D3FF)
-                      : Color(0xFF828A9B),
-                ),
-                checkColor: (this.colorHexCode != null)
-                    ? Colors.black
-                    : Theme.of(context).primaryColor,
-                fillColor: (this.colorHexCode != null)
-                    ? MaterialStateProperty.all<Color>(
-                        Theme.of(context).primaryColor)
-                    : MaterialStateProperty.all<Color>(
-                        Theme.of(context).buttonColor),
-                value: this.isDone,
-                shape: CircleBorder(),
-                onChanged: null)),
+          width: 20.w,
+          height: 20.h,
+          child: Checkbox(
+              side: BorderSide(
+                width: 1,
+                color: (this.colorHexCode != null)
+                    ? Color(AppThemeData.theme.colorHexDescriptionLight)
+                    : Color(AppThemeData.theme.colorHexDescriptionDark),
+              ),
+              checkColor: (this.colorHexCode != null)
+                  ? Color(AppThemeData.theme.colorHoxBlack)
+                  : Color(AppThemeData.theme.colorHexPrimary),
+              fillColor: (this.colorHexCode != null)
+                  ? MaterialStateProperty.all<Color>(
+                      Color(AppThemeData.theme.colorHexPrimary),
+                    )
+                  : MaterialStateProperty.all<Color>(
+                      Color(AppThemeData.theme.colorHexBlue),
+                    ),
+              value: this.isDone,
+              shape: CircleBorder(),
+              onChanged: null),
+        ),
         SizedBox(
           width: 8.w,
         ),
@@ -49,14 +53,8 @@ class CustomCheckBoxWidget extends StatelessWidget {
           this.title,
           maxLines: this.numLinesTitle,
           overflow: this.textOverflowType,
-          style: TextStyle(
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w400,
-            color: (this.colorHexCode != null)
-                ? Color(0xFFC1D3FF)
-                : Color(0xFF828A9B),
-            decoration: (this.isDone) ? TextDecoration.lineThrough : null,
-          ),
+          style: AppThemeData.theme
+              .titleCheckboxTextStyle(this.colorHexCode, this.isDone),
         )),
       ],
     );

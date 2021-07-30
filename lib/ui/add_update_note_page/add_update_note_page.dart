@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/data/note_data.dart';
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_bottom_app_bar_note_page_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_bottom_app_bar_widget.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
 
 class AddUpdateNotePage extends StatefulWidget {
@@ -16,14 +17,16 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
   toggleColorNote() {
     setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color( NoteData.noteData.colorHexCode),
-      bottomNavigationBar: CustomBottomAppBarNotePageWidget(numCharacters,toggleColorNote),
+      backgroundColor: Color(NoteData.noteData.colorHexCode),
+      bottomNavigationBar:
+          CustomBottomAppBarNotePageWidget(numCharacters, toggleColorNote),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color( NoteData.noteData.colorHexCode),
+        backgroundColor: Color(NoteData.noteData.colorHexCode),
         actions: [
           CustomButtonBottomAppBarWidget(
             onPressed: () {},
@@ -46,10 +49,10 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
               TextFormField(
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
-                style: titleTextStyle(),
+                style: AppThemeData.theme.titleNotePageTextStyle(),
                 decoration: InputDecoration(
                   hintText: 'Title',
-                  hintStyle: titleTextStyle(),
+                  hintStyle: AppThemeData.theme.titleNotePageTextStyle(),
                   border: InputBorder.none,
                 ),
               ),
@@ -60,10 +63,10 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                   setState(() {});
                 },
                 maxLines: null,
-                style: descriptionTextStyle(),
+                style: AppThemeData.theme.descriptionNotePageTextStyle(),
                 decoration: InputDecoration(
                   hintText: 'The Note ...',
-                  hintStyle: descriptionTextStyle(),
+                  hintStyle: AppThemeData.theme.descriptionNotePageTextStyle(),
                   border: InputBorder.none,
                 ),
               ),
@@ -75,14 +78,4 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
     );
   }
 
-  TextStyle descriptionTextStyle() => TextStyle(
-        color: Color(0xFF828A9B),
-        fontSize: 18,
-      );
-
-  TextStyle titleTextStyle() => TextStyle(
-        color: Theme.of(context).primaryColor,
-        fontSize: 26.sp,
-        fontWeight: FontWeight.w600,
-      );
 }

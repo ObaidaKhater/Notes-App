@@ -1,0 +1,91 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes_app/data/note_data.dart';
+
+class AppThemeData {
+  AppThemeData._();
+
+  static AppThemeData theme = AppThemeData._();
+  int colorHexPrimary = 0xFFFFFFFF;
+  int colorHexDescriptionDark = 0xFF828A9B;
+  int colorHexDescriptionLight = 0xFFC1D3FF;
+  int colorHexCard = 0xFF171C26;
+  int colorHexBlue = 0xFF3269FF;
+  int colorHexDark = 0xFF0E121B;
+  int colorHexPink = 0xFFAE3B76;
+  int colorHexOrange = 0xFFFE7745;
+  int colorHexTeal = 0xFF0BEAAF;
+  int colorHoxBlack = 0xFF000000;
+
+  TextStyle titleNotePageTextStyle() => TextStyle(
+        color: Color(colorHexPrimary),
+        fontSize: 26.sp,
+        fontWeight: FontWeight.w600,
+      );
+
+  TextStyle descriptionNotePageTextStyle() => TextStyle(
+        color: (NoteData.noteData.colorHexCode == colorHexDark)
+            ? Color(colorHexDescriptionDark)
+            : Color(colorHexDescriptionLight),
+        fontSize: 18.sp,
+      );
+
+  TextStyle dateAndNumCharactersTextStyle() => TextStyle(
+        color: (NoteData.noteData.colorHexCode == colorHexDark)
+            ? Color(colorHexDescriptionDark)
+            : Color(colorHexDescriptionLight),
+        fontSize: 12.sp,
+      );
+
+  TextStyle titleItemButtonMenuTextStyle() => TextStyle(
+        color: Color(colorHexPrimary),
+        fontSize: 16.sp,
+      );
+
+  TextStyle titleHomePageTextStyle() => TextStyle(
+        color: Color(colorHexPrimary),
+        fontSize: 28.sp,
+        fontWeight: FontWeight.w600,
+      );
+
+  TextStyle textSearchBoxHomePageTextStyle() => TextStyle(
+        color: Color(colorHexPrimary),
+        fontSize: 16.sp,
+      );
+
+  TextStyle hintTextSearchBoxHomePageTextStyle() => TextStyle(
+        color: Color(colorHexDescriptionDark),
+        fontSize: 15.sp,
+      );
+
+  TextStyle titleItemGridviewTextStyle() => TextStyle(
+        color: Color(colorHexPrimary),
+        fontSize: 18.sp,
+        fontWeight: FontWeight.bold,
+      );
+
+  TextStyle descItemGridviewTextStyle(int colorHexCode) => TextStyle(
+        color: (colorHexCode == null)
+            ? Color(colorHexDescriptionDark)
+            : Color(colorHexDescriptionLight),
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w400,
+      );
+
+  TextStyle titleCheckboxTextStyle(int colorHexCode, bool isDone) => TextStyle(
+        color: (colorHexCode == null)
+            ? Color(colorHexDescriptionDark)
+            : Color(colorHexDescriptionLight),
+        fontSize: 15.sp,
+        decoration: (isDone) ? TextDecoration.lineThrough : null,
+        fontWeight: FontWeight.w400,
+      );
+
+  TextStyle titleCatTextStyle(int colorHexCode) => TextStyle(
+        color: (colorHexCode == null)
+            ? Color(colorHexDescriptionDark)
+            : Color(colorHexDescriptionLight),
+        fontSize: 14.sp,
+      );
+}

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_button_widget.dart';
 
 class CustomSearchBoxWidget extends StatelessWidget {
@@ -21,7 +21,7 @@ class CustomSearchBoxWidget extends StatelessWidget {
       height: 50.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.r),
-        color: Theme.of(context).cardColor,
+        color: Color(AppThemeData.theme.colorHexCard),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -34,10 +34,10 @@ class CustomSearchBoxWidget extends StatelessWidget {
           ),
           Expanded(
             child: TextField(
-              style: TextStyle(color: Colors.white),
+              style: AppThemeData.theme.textSearchBoxHomePageTextStyle(),
               decoration: InputDecoration(
                   hintStyle:
-                      TextStyle(fontSize: 15.sp, color: Color(0xFF5A6372)),
+                      AppThemeData.theme.hintTextSearchBoxHomePageTextStyle(),
                   hintText: 'Search your notes',
                   border: InputBorder.none),
             ),

@@ -14,7 +14,7 @@ class CustomColorWidget extends StatelessWidget {
     return GestureDetector(
       onTap: this.onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 30.h),
         width: 45.w,
         height: 45.h,
         child: (this.coloHexCode == NoteData.noteData.colorHexCode)

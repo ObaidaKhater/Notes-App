@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/models/note.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 import 'package:notes_app/ui/shared/widgets/custom_check_box_widget.dart';
 
 class CustomItemGridviewWidget extends StatelessWidget {
@@ -27,7 +28,7 @@ class CustomItemGridviewWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(18.r),
         color: (this.note.colorHexCode != null)
             ? Color(this.note.colorHexCode)
-            : Theme.of(context).cardColor,
+            : Color(AppThemeData.theme.colorHexCard),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,27 +51,21 @@ class CustomItemGridviewWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
             child: Text(
               this.note.title,
-              style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold),
+              style: AppThemeData.theme.titleItemGridviewTextStyle(),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           (this.note.description != null && this.note.description.isNotEmpty)
               ? Container(
-                  padding: EdgeInsets.only(left: 15.w, right: 5.w,bottom: 10.h),
+                  padding:
+                      EdgeInsets.only(left: 15.w, right: 5.w, bottom: 10.h),
                   child: Text(
                     this.note.description,
                     maxLines: (this.note.itemsCheck != null) ? 3 : 25,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: (note.colorHexCode != null)
-                            ? Color(0xFFC1D3FF)
-                            : Color(0xFF828A9B),
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w400),
+                    style: AppThemeData.theme
+                        .descItemGridviewTextStyle(note.colorHexCode),
                   ),
                 )
               : Container(),
@@ -100,22 +95,22 @@ class CustomItemGridviewWidget extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        border: Border.all(
-                            color: (note.colorHexCode != null)
-                                ? Color(0xFFC1D3FF)
-                                : Color(0xFF828A9B))),
+                      borderRadius: BorderRadius.circular(10.r),
+                      border: Border.all(
+                        color: (note.colorHexCode != null)
+                            ? Color(AppThemeData.theme.colorHexDescriptionLight)
+                            : Color(AppThemeData.theme.colorHexDescriptionDark),
+                      ),
+                    ),
                     child: Text(
                       this.note.category.title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: (note.colorHexCode != null)
-                              ? Color(0xFFC1D3FF)
-                              : Color(0xFF828A9B),
-                          fontSize: 14.sp),
+                      style: AppThemeData.theme
+                          .titleCatTextStyle(this.note.colorHexCode),
                     ),
-                  ))
+                  ),
+                )
               : Container(),
         ],
       ),

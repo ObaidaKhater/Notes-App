@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 
 class CustomButtonBottomAppBarWidget extends StatelessWidget {
   Function onPressed;
@@ -19,7 +20,7 @@ class CustomButtonBottomAppBarWidget extends StatelessWidget {
         this.imagePath,
         width: (size == null)?27.w:this.size.w,
         height: (size == null)?27.h:this.size.h,
-        color: Theme.of(context).primaryColor.withOpacity(0.9),
+        color: Color(AppThemeData.theme.colorHexPrimary).withOpacity(0.9),
       ),
     );
   }

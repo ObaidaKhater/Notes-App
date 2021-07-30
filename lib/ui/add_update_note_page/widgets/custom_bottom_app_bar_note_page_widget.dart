@@ -37,8 +37,7 @@ class CustomBottomAppBarNotePageWidget extends StatelessWidget {
               CustomButtonBottomAppBarWidget(
                 onPressed: () => showModalBottomSheet(
                     context: context,
-                    builder: (context) =>
-                        CustomMoreMenuWidget(toggleColorNote)),
+                    builder: (context) => CustomMoreMenuWidget(toggleColorNote)),
                 imagePath: 'assets/icons/menu_icon.png',
                 size: 25,
               ),

@@ -5,6 +5,7 @@ import 'package:notes_app/ui/home_page/widgets/custom_bottom_app_bar_widget.dart
 import 'package:notes_app/ui/home_page/widgets/custom_floating_action_button_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_gridview_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_search_box_widget.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       floatingActionButton: CustomFloatingActionButtonWidget(onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Color(AppThemeData.theme.colorHexDark),
       bottomNavigationBar: CustomBottomAppBarWidget(),
       key: _scaffoldKey,
       drawer: Drawer(

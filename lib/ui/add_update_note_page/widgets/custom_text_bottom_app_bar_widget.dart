@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 class CustomTextBottomAppBarWidget extends StatelessWidget {
   int numCharacters;
 
@@ -13,8 +13,7 @@ class CustomTextBottomAppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       day + ', ' + time +' | '+'$numCharacters characters',
-      style: TextStyle(color: Color(0xFF828A9B),
-      fontSize: 12.sp),
+      style: AppThemeData.theme.dateAndNumCharactersTextStyle(),
     );
   }
 }

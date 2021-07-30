@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,14 +27,9 @@ class CustomItemButtonMenuWidget extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: titleTextStyle(context),
+          style: AppThemeData.theme.titleItemButtonMenuTextStyle(),
         ),
       ),
     );
   }
-
-  TextStyle titleTextStyle(BuildContext context) => TextStyle(
-        color: Theme.of(context).primaryColor,
-        fontSize: 16.sp,
-      );
 }

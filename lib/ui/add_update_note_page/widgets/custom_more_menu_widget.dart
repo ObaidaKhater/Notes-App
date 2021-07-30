@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/note_data.dart';
-import 'package:notes_app/models/note.dart';
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_color_widget.dart';
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_item_button_menu_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 
 class CustomMoreMenuWidget extends StatefulWidget {
   Function toggleColorNote;
@@ -19,6 +19,7 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5.w),
       height: MediaQuery.of(context).size.height * 0.5,
       decoration: BoxDecoration(
         color: Color(NoteData.noteData.colorHexCode),
@@ -33,33 +34,46 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
               child: Row(
                 children: [
                   CustomColorWidget(
-                      coloHexCode: 0xFF3269FF,
+                      coloHexCode: AppThemeData.theme.colorHexBlue,
                       onTap: () {
                         this.widget.toggleColorNote();
-                        NoteData.noteData.colorHexCode = 0xFF3269FF;
+                        NoteData.noteData.colorHexCode =
+                            AppThemeData.theme.colorHexBlue;
                         setState(() {});
                       }),
                   CustomColorWidget(
-                    coloHexCode: 0xFF0E121B,
-                    onTap:(){
+                    coloHexCode: AppThemeData.theme.colorHexPink,
+                    onTap: () {
                       this.widget.toggleColorNote();
-                      NoteData.noteData.colorHexCode = 0xFF0E121B;
+                      NoteData.noteData.colorHexCode =
+                          AppThemeData.theme.colorHexPink;
                       setState(() {});
                     },
                   ),
                   CustomColorWidget(
-                    coloHexCode: 0xFFAE3B76,
-                    onTap:(){
+                    coloHexCode: AppThemeData.theme.colorHexOrange,
+                    onTap: () {
                       this.widget.toggleColorNote();
-                      NoteData.noteData.colorHexCode = 0xFFAE3B76;
+                      NoteData.noteData.colorHexCode =
+                          AppThemeData.theme.colorHexOrange;
                       setState(() {});
                     },
                   ),
                   CustomColorWidget(
-                    coloHexCode: 0xFFFE7745,
-                    onTap:(){
+                    coloHexCode: AppThemeData.theme.colorHexDark,
+                    onTap: () {
                       this.widget.toggleColorNote();
-                      NoteData.noteData.colorHexCode = 0xFFFE7745;
+                      NoteData.noteData.colorHexCode =
+                          AppThemeData.theme.colorHexDark;
+                      setState(() {});
+                    },
+                  ),
+                  CustomColorWidget(
+                    coloHexCode: AppThemeData.theme.colorHexTeal,
+                    onTap: () {
+                      this.widget.toggleColorNote();
+                      NoteData.noteData.colorHexCode =
+                          AppThemeData.theme.colorHexTeal;
                       setState(() {});
                     },
                   ),

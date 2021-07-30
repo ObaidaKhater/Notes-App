@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes_app/ui/shared/theme_data.dart';
 
 class CustomFloatingActionButtonWidget extends StatelessWidget {
   Function onPressed;
@@ -15,7 +16,7 @@ class CustomFloatingActionButtonWidget extends StatelessWidget {
       child: FloatingActionButton(
         onPressed: this.onPressed,
         elevation: 0,
-        backgroundColor: Theme.of(context).buttonColor,
+        backgroundColor: Color(AppThemeData.theme.colorHexBlue),
         child: Container(
           child: Icon(
             Icons.add,
@@ -24,7 +25,7 @@ class CustomFloatingActionButtonWidget extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: <BoxShadow>[
               BoxShadow(
-                  color: Theme.of(context).buttonColor.withOpacity(0.3),
+                  color: Color(AppThemeData.theme.colorHexBlue).withOpacity(0.3),
                   spreadRadius: 10,
                   blurRadius: 40,
                   offset: Offset(0, 5)),
