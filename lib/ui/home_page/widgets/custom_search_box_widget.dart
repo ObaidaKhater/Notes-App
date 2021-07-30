@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notes_app/ui/home_page/widgets/custom_button_bottom_app_bar_widget.dart';
+import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_button_widget.dart';
 
 class CustomSearchBoxWidget extends StatelessWidget {

@@ -13,13 +13,13 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 739),
       builder: () => MaterialApp(
-        home: HomePage(),
+        home: AddUpdateNotePage(),
         theme: ThemeData(
           backgroundColor: Color(0xFF0E121B),
           primaryColor: Color(0xFFFFFFFF),
           cardColor: Color(0xFF171C26),
           buttonColor:Color(0xFF3269FF),
-
+          canvasColor: Colors.transparent,
         ),
       ),
     );

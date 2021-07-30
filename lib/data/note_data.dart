@@ -6,6 +6,7 @@ class NoteData {
   NoteData._();
 
   static NoteData noteData = NoteData._();
+  int colorHexCode = 0xFF0E121B;
 
   List<Note> notes = [
     Note(

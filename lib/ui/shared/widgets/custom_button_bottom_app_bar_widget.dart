@@ -4,9 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomButtonBottomAppBarWidget extends StatelessWidget {
   Function onPressed;
   String imagePath;
+  double size;
 
   CustomButtonBottomAppBarWidget(
-      {@required this.onPressed, @required this.imagePath});
+      {@required this.onPressed, @required this.imagePath,this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,8 @@ class CustomButtonBottomAppBarWidget extends StatelessWidget {
       elevation: 0,
       child: Image.asset(
         this.imagePath,
-        width: 27.w,
-        height: 27.h,
+        width: (size == null)?27.w:this.size.w,
+        height: (size == null)?27.h:this.size.h,
         color: Theme.of(context).primaryColor.withOpacity(0.9),
       ),
     );
