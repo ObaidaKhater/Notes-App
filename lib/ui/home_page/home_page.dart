@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_app_bar_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_bottom_app_bar_widget.dart';
+import 'package:notes_app/ui/home_page/widgets/custom_drawar_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_floating_action_button_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_gridview_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_search_box_widget.dart';
@@ -26,12 +27,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       floatingActionButton: CustomFloatingActionButtonWidget(onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      backgroundColor: Color(AppThemeData.theme.colorHexDark),
+      backgroundColor: Color(AppThemeData.theme.colorHexBackground),
       bottomNavigationBar: CustomBottomAppBarWidget(),
       key: _scaffoldKey,
-      drawer: Drawer(
-        elevation: 20,
-      ),
+      drawer: CustomDrawerWidget(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

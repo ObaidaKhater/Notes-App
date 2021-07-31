@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/ui/shared/theme_data.dart';
 
-class CustomCheckBoxWidget extends StatelessWidget {
+class CustomCheckBoxHomePageWidget extends StatelessWidget {
   bool isDone;
   String title;
   int colorHexCode;
-  int numLinesTitle;
-  TextOverflow textOverflowType;
 
-  CustomCheckBoxWidget({
+  CustomCheckBoxHomePageWidget({
     @required this.isDone,
     @required this.title,
     @required this.colorHexCode,
-    @required this.numLinesTitle,
-    @required this.textOverflowType,
   });
 
   @override
@@ -26,7 +22,7 @@ class CustomCheckBoxWidget extends StatelessWidget {
           height: 20.h,
           child: Checkbox(
               side: BorderSide(
-                width: 1,
+                width: 1.r,
                 color: (this.colorHexCode != null)
                     ? Color(AppThemeData.theme.colorHexDescriptionLight)
                     : Color(AppThemeData.theme.colorHexDescriptionDark),
@@ -49,13 +45,14 @@ class CustomCheckBoxWidget extends StatelessWidget {
           width: 8.w,
         ),
         Expanded(
-            child: Text(
-          this.title,
-          maxLines: this.numLinesTitle,
-          overflow: this.textOverflowType,
-          style: AppThemeData.theme
-              .titleCheckboxTextStyle(this.colorHexCode, this.isDone),
-        )),
+          child: Text(
+            this.title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: AppThemeData.theme
+            .titleCheckboxTextStyle(this.colorHexCode, this.isDone),
+          ),
+        ),
       ],
     );
   }

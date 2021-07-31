@@ -36,44 +36,44 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
                   CustomColorWidget(
                       coloHexCode: AppThemeData.theme.colorHexBlue,
                       onTap: () {
-                        this.widget.toggleColorNote();
                         NoteData.noteData.colorHexCode =
                             AppThemeData.theme.colorHexBlue;
+                        this.widget.toggleColorNote();
                         setState(() {});
                       }),
                   CustomColorWidget(
                     coloHexCode: AppThemeData.theme.colorHexPink,
                     onTap: () {
-                      this.widget.toggleColorNote();
                       NoteData.noteData.colorHexCode =
                           AppThemeData.theme.colorHexPink;
+                      this.widget.toggleColorNote();
                       setState(() {});
                     },
                   ),
                   CustomColorWidget(
                     coloHexCode: AppThemeData.theme.colorHexOrange,
                     onTap: () {
-                      this.widget.toggleColorNote();
                       NoteData.noteData.colorHexCode =
                           AppThemeData.theme.colorHexOrange;
+                      this.widget.toggleColorNote();
                       setState(() {});
                     },
                   ),
                   CustomColorWidget(
-                    coloHexCode: AppThemeData.theme.colorHexDark,
+                    coloHexCode: AppThemeData.theme.colorHexCard,
                     onTap: () {
-                      this.widget.toggleColorNote();
                       NoteData.noteData.colorHexCode =
-                          AppThemeData.theme.colorHexDark;
+                          AppThemeData.theme.colorHexCard;
+                      this.widget.toggleColorNote();
                       setState(() {});
                     },
                   ),
                   CustomColorWidget(
                     coloHexCode: AppThemeData.theme.colorHexTeal,
                     onTap: () {
-                      this.widget.toggleColorNote();
                       NoteData.noteData.colorHexCode =
                           AppThemeData.theme.colorHexTeal;
+                      this.widget.toggleColorNote();
                       setState(() {});
                     },
                   ),

@@ -12,7 +12,7 @@ class AppThemeData {
   int colorHexDescriptionLight = 0xFFC1D3FF;
   int colorHexCard = 0xFF171C26;
   int colorHexBlue = 0xFF3269FF;
-  int colorHexDark = 0xFF0E121B;
+  int colorHexBackground = 0xFF0E121B;
   int colorHexPink = 0xFFAE3B76;
   int colorHexOrange = 0xFFFE7745;
   int colorHexTeal = 0xFF0BEAAF;
@@ -25,14 +25,14 @@ class AppThemeData {
       );
 
   TextStyle descriptionNotePageTextStyle() => TextStyle(
-        color: (NoteData.noteData.colorHexCode == colorHexDark)
+        color: (NoteData.noteData.colorHexCode == colorHexCard)
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 18.sp,
       );
 
   TextStyle dateAndNumCharactersTextStyle() => TextStyle(
-        color: (NoteData.noteData.colorHexCode == colorHexDark)
+        color: (NoteData.noteData.colorHexCode == colorHexCard)
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 12.sp,
@@ -87,5 +87,28 @@ class AppThemeData {
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 14.sp,
+      );
+
+  TextStyle descDrawerTextStyle() => TextStyle(
+        color: Color(colorHexDescriptionDark),
+        fontSize: 12.sp,
+      );
+
+  TextStyle titleCatDrawerTextStyle() => TextStyle(
+        color: Color(colorHexPrimary),
+        fontSize: 16.sp,
+      );
+
+  TextStyle titleCatPageTextStyle() => TextStyle(
+        color: Color(colorHexPrimary),
+        fontSize: 22.sp,
+        fontWeight: FontWeight.w600,
+      );
+
+  TextStyle hintAddCheckBoxTextField() => TextStyle(
+        color: (NoteData.noteData.colorHexCode == colorHexCard)
+            ? Color(colorHexDescriptionDark)
+            : Color(colorHexDescriptionLight),
+        fontSize: 18.sp,
       );
 }
