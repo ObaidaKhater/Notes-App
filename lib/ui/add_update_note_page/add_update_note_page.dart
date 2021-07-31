@@ -204,9 +204,9 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                             flex: 1,
                             child: CustomButtonBottomAppBarWidget(
                               onPressed: () {
-                                if (_checkboxController.text
-                                    .trim()
-                                    .isNotEmpty) {
+                                if(NoteData.noteData.itemsCheck == null)
+                                  NoteData.noteData.itemsCheck = [];
+                                if (_checkboxController.text.trim().isNotEmpty) {
                                   NoteData.noteData.itemsCheck.add(
                                     ItemCheck(
                                       title: _checkboxController.text.trim(),
@@ -253,13 +253,15 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                             style: AppThemeData.theme.titleCatNotePageTextStyle(),
                           ),
                         ),
-                        Positioned(
-                          bottom: 4.h,
-                          right: 50.w,
+                        Transform.translate(
+                          offset: Offset(-10,5),
                           child: CustomButtonBottomAppBarWidget(
                             imagePath: 'assets/icons/close_icon.png',
                             size: 13,
-                            onPressed: () {},
+                            onPressed: () {
+                              NoteData.noteData.category = null;
+                              setState(() {});
+                            },
                           ),
                         )
                       ],
