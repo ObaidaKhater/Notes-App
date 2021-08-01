@@ -34,6 +34,7 @@ class CustomItemGridviewWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
+          // Draw Image -----------------------------------------------------
           (this.note.imagePath != null)
               ? Container(
                   width: MediaQuery.of(context).size.width,
@@ -47,6 +48,7 @@ class CustomItemGridviewWidget extends StatelessWidget {
                   ),
                 )
               : Container(),
+          // Draw Title -----------------------------------------------------
           Padding(
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
             child: Text(
@@ -56,6 +58,8 @@ class CustomItemGridviewWidget extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
+
+          // Draw Description -----------------------------------------------------
           (this.note.description != null && this.note.description.isNotEmpty)
               ? Container(
                   padding:
@@ -69,6 +73,8 @@ class CustomItemGridviewWidget extends StatelessWidget {
                   ),
                 )
               : Container(),
+
+          // Draw Items Check -----------------------------------------------
           (this.note.itemsCheck != null)
               ? Container(
                   padding: EdgeInsets.only(bottom: 5.h, left: 15.w, right: 5.w),
@@ -85,6 +91,8 @@ class CustomItemGridviewWidget extends StatelessWidget {
                     }).toList(),
                   ))
               : Container(),
+
+          // Draw Category -----------------------------------------------------
           (this.note.category != null)
               ? Container(
                 margin: EdgeInsets.only(top: 10.h, left: 15.w, right: 15.w),
@@ -92,7 +100,7 @@ class CustomItemGridviewWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
                   border: Border.all(
-                    color: (note.colorHexCode != null)
+                    color: (note.colorHexCode != AppThemeData.theme.colorHexCard)
                         ? Color(AppThemeData.theme.colorHexDescriptionLight)
                         : Color(AppThemeData.theme.colorHexDescriptionDark),
                   ),

@@ -21,7 +21,7 @@ class CustomItemButtonMenuWidget extends StatelessWidget {
       onTap: this.onTap,
       child: ListTile(
         leading: CustomButtonBottomAppBarWidget(
-          onPressed: null,
+          onTap: null,
           imagePath: this.iconPath,
           size: this.size,
         ),

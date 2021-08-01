@@ -23,7 +23,7 @@ class CustomItemDrawerWidget extends StatelessWidget {
           Spacer(),
           CustomButtonBottomAppBarWidget(
             imagePath: this.pathIcon,
-            onPressed: null,
+            onTap: null,
             size: 18,
           ),
         ],

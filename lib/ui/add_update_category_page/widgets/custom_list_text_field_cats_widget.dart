@@ -17,12 +17,12 @@ class CustomListTextFieldCatsWidget extends StatelessWidget {
                 style: AppThemeData.theme.textSearchBoxHomePageTextStyle(),
                 decoration: InputDecoration(
                     prefixIcon: CustomButtonBottomAppBarWidget(
-                      onPressed: null,
+                      onTap: null,
                       imagePath: 'assets/icons/category_icon.png',
                       size: 17,
                     ),
                     suffixIcon: CustomButtonBottomAppBarWidget(
-                      onPressed: () {},
+                      onTap: () {},
                       imagePath: 'assets/icons/delete_icon.png',
                       size: 17,
                     ),

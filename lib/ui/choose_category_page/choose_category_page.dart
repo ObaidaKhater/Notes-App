@@ -19,7 +19,7 @@ class ChooseCategoryPage extends StatelessWidget {
         ),
         backgroundColor: Color(AppThemeData.theme.colorHexBackground),
         leading: CustomButtonBottomAppBarWidget(
-          onPressed: () {},
+          onTap: () {},
           imagePath: 'assets/icons/left_icon.png',
           size: 20,
         ),
@@ -40,7 +40,7 @@ class ChooseCategoryPage extends StatelessWidget {
                             ),
                           ),
                           trailing: CustomButtonBottomAppBarWidget(
-                            onPressed: null,
+                            onTap: null,
                             imagePath: 'assets/icons/category_icon.png',
                             size: 17,
                           ),

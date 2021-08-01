@@ -30,7 +30,7 @@ class CustomBottomAppBarNotePageWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               CustomButtonBottomAppBarWidget(
-                onPressed: () => showModalBottomSheet(
+                onTap: () => showModalBottomSheet(
                     context: context,
                     builder: (context) => CustomAddMenuWidget(this.toggleShowAddCheckBoxIcon,this.isShowAddCheckBoxIcon)),
                 imagePath: 'assets/icons/add_icon.png',
@@ -38,7 +38,7 @@ class CustomBottomAppBarNotePageWidget extends StatelessWidget {
               ),
               CustomTextBottomAppBarWidget(numCharacters),
               CustomButtonBottomAppBarWidget(
-                onPressed: () => showModalBottomSheet(
+                onTap: () => showModalBottomSheet(
                     context: context,
                     builder: (context) =>
                         CustomMoreMenuWidget(toggleColorNote)),

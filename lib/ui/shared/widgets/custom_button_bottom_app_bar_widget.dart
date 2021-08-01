@@ -3,17 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/ui/shared/theme_data.dart';
 
 class CustomButtonBottomAppBarWidget extends StatelessWidget {
-  Function onPressed;
+  Function onTap;
   String imagePath;
   double size;
 
   CustomButtonBottomAppBarWidget(
-      {@required this.onPressed, @required this.imagePath,this.size});
+      {@required this.onTap, @required this.imagePath,this.size});
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: this.onPressed,
+      heroTag: null,
+      onPressed: this.onTap,
       backgroundColor: Colors.transparent,
       elevation: 0,
       child: Image.asset(

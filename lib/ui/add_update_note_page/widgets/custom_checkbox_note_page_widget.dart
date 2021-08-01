@@ -73,7 +73,7 @@ class _CustomCheckBoxNotePageWidgetState
             flex: 1,
             child: CustomButtonBottomAppBarWidget(
               imagePath: 'assets/icons/close_icon.png',
-              onPressed: () {
+              onTap: () {
                 NoteData.noteData.itemsCheck.remove(widget.itemCheck);
                 widget.toggleOnNotePage();
               },

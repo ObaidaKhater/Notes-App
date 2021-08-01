@@ -1,6 +1,8 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/note_data.dart';
+import 'package:notes_app/helpers/navigator_helper.dart';
 import 'package:notes_app/models/category.dart';
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_color_widget.dart';
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_item_button_menu_widget.dart';
@@ -103,12 +105,8 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
             CustomItemButtonMenuWidget(
               title: 'Categories',
               onTap: () async{
-                Navigator.pop(context);
-               Category category = await Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return ChooseCategoryPage();
-                }));
-               NoteData.noteData.category =  category;
-               widget.toggleColorNote();
+              await NavigatorHelper.navigatorHelper.pushChooseCategory();
+                widget.toggleColorNote();
               },
               iconPath: 'assets/icons/category_icon.png',
               size: 22,

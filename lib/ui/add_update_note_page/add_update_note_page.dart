@@ -17,8 +17,10 @@ enum ActionOnPage { EDIT, ADD }
 class AddUpdateNotePage extends StatefulWidget {
   ActionOnPage actionOnPage;
   Note note;
+  bool isShowAddCheckBoxIcon;
 
-  AddUpdateNotePage({@required this.actionOnPage, this.note});
+  AddUpdateNotePage(
+      {@required this.actionOnPage, this.note, this.isShowAddCheckBoxIcon});
 
   @override
   _AddUpdateNotePageState createState() => _AddUpdateNotePageState();
@@ -29,12 +31,11 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
   TextEditingController _titleController;
   TextEditingController _desController;
   TextEditingController _checkboxController;
-  bool _isShowAddCheckBoxIcon;
 
   toggleOnNotePage() => setState(() {});
 
   toggleShowAddCheckBoxIcon(bool isShow) {
-    _isShowAddCheckBoxIcon = !isShow;
+    widget.isShowAddCheckBoxIcon = !isShow;
     setState(() {});
   }
 
@@ -52,8 +53,8 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
       NoteData.noteData.colorHexCode = widget.note.colorHexCode;
       NoteData.noteData.itemsCheck = widget.note.itemsCheck;
       (widget.note.itemsCheck != null)
-          ? _isShowAddCheckBoxIcon = true
-          : _isShowAddCheckBoxIcon = false;
+          ? widget.isShowAddCheckBoxIcon = true
+          : widget.isShowAddCheckBoxIcon = false;
     } else {
       _titleController = TextEditingController();
       _desController = TextEditingController();
@@ -64,7 +65,9 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
       NoteData.noteData.category = null;
       NoteData.noteData.colorHexCode = AppThemeData.theme.colorHexCard;
       NoteData.noteData.itemsCheck = null;
-      _isShowAddCheckBoxIcon = false;
+      (widget.isShowAddCheckBoxIcon == null)
+          ? widget.isShowAddCheckBoxIcon = false
+          : widget.isShowAddCheckBoxIcon = widget.isShowAddCheckBoxIcon;
     }
   }
 
@@ -80,20 +83,23 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(NoteData.noteData.colorHexCode),
-      bottomNavigationBar: CustomBottomAppBarNotePageWidget(_numCharacters,
-          toggleOnNotePage, toggleShowAddCheckBoxIcon, _isShowAddCheckBoxIcon),
+      bottomNavigationBar: CustomBottomAppBarNotePageWidget(
+          _numCharacters,
+          toggleOnNotePage,
+          toggleShowAddCheckBoxIcon,
+          widget.isShowAddCheckBoxIcon),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Color(NoteData.noteData.colorHexCode),
         actions: [
           CustomButtonBottomAppBarWidget(
-            onPressed: () {},
+            onTap: () {},
             imagePath: 'assets/icons/done_icon.png',
             size: 20,
           ),
         ],
         leading: CustomButtonBottomAppBarWidget(
-          onPressed: () {},
+          onTap: () {},
           imagePath: 'assets/icons/left_icon.png',
           size: 20,
         ),
@@ -120,7 +126,7 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                           alignment: Alignment.bottomRight,
                           child: CustomButtonBottomAppBarWidget(
                             imagePath: 'assets/icons/close_icon.png',
-                            onPressed: () {
+                            onTap: () {
                               NoteData.noteData.imagePath = null;
                               setState(() {});
                             },
@@ -180,7 +186,7 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                   : Container(),
 
               // Draw Add New CheckBox --------------------------------------------------------
-              (_isShowAddCheckBoxIcon)
+              (widget.isShowAddCheckBoxIcon)
                   ? Container(
                       margin: EdgeInsets.only(left: 25.w, top: 10.h),
                       child: Row(
@@ -203,10 +209,12 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                           Expanded(
                             flex: 1,
                             child: CustomButtonBottomAppBarWidget(
-                              onPressed: () {
-                                if(NoteData.noteData.itemsCheck == null)
+                              onTap: () {
+                                if (NoteData.noteData.itemsCheck == null)
                                   NoteData.noteData.itemsCheck = [];
-                                if (_checkboxController.text.trim().isNotEmpty) {
+                                if (_checkboxController.text
+                                    .trim()
+                                    .isNotEmpty) {
                                   NoteData.noteData.itemsCheck.add(
                                     ItemCheck(
                                       title: _checkboxController.text.trim(),
@@ -239,7 +247,8 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
                             border: Border.all(
-                              color: (NoteData.noteData.colorHexCode != AppThemeData.theme.colorHexCard)
+                              color: (NoteData.noteData.colorHexCode !=
+                                      AppThemeData.theme.colorHexCard)
                                   ? Color(AppThemeData
                                       .theme.colorHexDescriptionLight)
                                   : Color(AppThemeData
@@ -250,15 +259,16 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                             NoteData.noteData.category.title,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: AppThemeData.theme.titleCatNotePageTextStyle(),
+                            style:
+                                AppThemeData.theme.titleCatNotePageTextStyle(),
                           ),
                         ),
                         Transform.translate(
-                          offset: Offset(-10,5),
+                          offset: Offset(-10, 5),
                           child: CustomButtonBottomAppBarWidget(
                             imagePath: 'assets/icons/close_icon.png',
                             size: 13,
-                            onPressed: () {
+                            onTap: () {
                               NoteData.noteData.category = null;
                               setState(() {});
                             },

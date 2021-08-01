@@ -20,7 +20,7 @@ class AddUpdateCategoryPage extends StatelessWidget {
         ),
         backgroundColor: Color(NoteData.noteData.colorHexCode),
         leading: CustomButtonBottomAppBarWidget(
-          onPressed: () {},
+          onTap: () {},
           imagePath: 'assets/icons/left_icon.png',
           size: 20,
         ),
@@ -35,7 +35,7 @@ class AddUpdateCategoryPage extends StatelessWidget {
                   style: AppThemeData.theme.textSearchBoxHomePageTextStyle(),
                   decoration: InputDecoration(
                       suffixIcon: CustomButtonBottomAppBarWidget(
-                        onPressed: null,
+                        onTap: null,
                         imagePath: 'assets/icons/add_icon.png',
                         size:17,
                       ),

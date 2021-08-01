@@ -66,7 +66,7 @@ class AppThemeData {
       );
 
   TextStyle descItemGridviewTextStyle(int colorHexCode) => TextStyle(
-        color: (colorHexCode == null)
+        color: (colorHexCode == colorHexCard)
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 15.sp,
@@ -74,7 +74,7 @@ class AppThemeData {
       );
 
   TextStyle titleCheckboxTextStyle(int colorHexCode, bool isDone) => TextStyle(
-        color: (colorHexCode == null)
+        color: (colorHexCode == colorHexCard)
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 15.sp,
@@ -83,7 +83,7 @@ class AppThemeData {
       );
 
   TextStyle titleCatHomePageTextStyle(int colorHexCode) => TextStyle(
-        color: (colorHexCode == null)
+        color: (colorHexCode == colorHexCard)
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 14.sp,

@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: CustomFloatingActionButtonWidget(onPressed: () {}),
+      floatingActionButton: CustomFloatingActionButtonWidget(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       backgroundColor: Color(AppThemeData.theme.colorHexBackground),
       bottomNavigationBar: CustomBottomAppBarWidget(),

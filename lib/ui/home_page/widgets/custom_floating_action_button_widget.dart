@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes_app/helpers/navigator_helper.dart';
+import 'package:notes_app/ui/add_update_note_page/add_update_note_page.dart';
 import 'package:notes_app/ui/shared/theme_data.dart';
 
 class CustomFloatingActionButtonWidget extends StatelessWidget {
-  Function onPressed;
-
-  CustomFloatingActionButtonWidget({@required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,6 @@ class CustomFloatingActionButtonWidget extends StatelessWidget {
       height: 58.h,
       margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       child: FloatingActionButton(
-        onPressed: this.onPressed,
         elevation: 0,
         backgroundColor: Color(AppThemeData.theme.colorHexBlue),
         child: Container(
@@ -32,6 +30,11 @@ class CustomFloatingActionButtonWidget extends StatelessWidget {
             ],
           ),
         ),
+        onPressed:(){
+          NavigatorHelper.navigatorHelper.push(
+            AddUpdateNotePage(actionOnPage: ActionOnPage.ADD),
+          );
+        },
       ),
     );
   }
