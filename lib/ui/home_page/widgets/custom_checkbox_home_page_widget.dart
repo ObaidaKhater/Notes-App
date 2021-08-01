@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notes_app/ui/shared/theme_data.dart';
+import 'package:notes_app/data/theme_data.dart';
 
 class CustomCheckBoxHomePageWidget extends StatelessWidget {
   bool isDone;

@@ -19,6 +19,11 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         home: HomePage(),
         navigatorKey: NavigatorHelper.navigatorHelper.navKey,
+        routes: {
+          '/addNote': (context) => AddUpdateNotePage(
+                actionOnPage: ActionOnPage.ADD,
+              )
+        },
         theme: ThemeData(
             primaryColor: Color(0xFFFFFFFF),
             cardColor: Color(0xFFFFFFFF),

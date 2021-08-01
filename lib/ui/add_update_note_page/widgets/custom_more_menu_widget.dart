@@ -8,12 +8,12 @@ import 'package:notes_app/ui/add_update_note_page/widgets/custom_color_widget.da
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_item_button_menu_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/ui/choose_category_page/choose_category_page.dart';
-import 'package:notes_app/ui/shared/theme_data.dart';
+import 'package:notes_app/data/theme_data.dart';
 
 class CustomMoreMenuWidget extends StatefulWidget {
-  Function toggleColorNote;
+  Function toggleOnNotePage;
 
-  CustomMoreMenuWidget(this.toggleColorNote);
+  CustomMoreMenuWidget(this.toggleOnNotePage);
 
   @override
   _CustomMoreMenuWidgetState createState() => _CustomMoreMenuWidgetState();
@@ -42,7 +42,7 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
                       onTap: () {
                         NoteData.noteData.colorHexCode =
                             AppThemeData.theme.colorHexBlue;
-                        this.widget.toggleColorNote();
+                        this.widget.toggleOnNotePage();
                         setState(() {});
                       }),
                   CustomColorWidget(
@@ -50,7 +50,7 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
                     onTap: () {
                       NoteData.noteData.colorHexCode =
                           AppThemeData.theme.colorHexPink;
-                      this.widget.toggleColorNote();
+                      this.widget.toggleOnNotePage();
                       setState(() {});
                     },
                   ),
@@ -59,7 +59,7 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
                     onTap: () {
                       NoteData.noteData.colorHexCode =
                           AppThemeData.theme.colorHexOrange;
-                      this.widget.toggleColorNote();
+                      this.widget.toggleOnNotePage();
                       setState(() {});
                     },
                   ),
@@ -68,7 +68,7 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
                     onTap: () {
                       NoteData.noteData.colorHexCode =
                           AppThemeData.theme.colorHexCard;
-                      this.widget.toggleColorNote();
+                      this.widget.toggleOnNotePage();
                       setState(() {});
                     },
                   ),
@@ -77,7 +77,7 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
                     onTap: () {
                       NoteData.noteData.colorHexCode =
                           AppThemeData.theme.colorHexTeal;
-                      this.widget.toggleColorNote();
+                      this.widget.toggleOnNotePage();
                       setState(() {});
                     },
                   ),
@@ -106,7 +106,7 @@ class _CustomMoreMenuWidgetState extends State<CustomMoreMenuWidget> {
               title: 'Categories',
               onTap: () async{
               await NavigatorHelper.navigatorHelper.pushChooseCategory();
-                widget.toggleColorNote();
+                widget.toggleOnNotePage();
               },
               iconPath: 'assets/icons/category_icon.png',
               size: 22,

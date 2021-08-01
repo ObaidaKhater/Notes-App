@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/note_data.dart';
+import 'package:notes_app/helpers/navigator_helper.dart';
+import 'package:notes_app/ui/add_update_category_page/add_update_category_page.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_item_drawer_widget.dart';
-import 'package:notes_app/ui/shared/theme_data.dart';
+import 'package:notes_app/data/theme_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
 
@@ -43,7 +45,14 @@ class CustomDrawerWidget extends StatelessWidget {
                 ),
                 CustomItemDrawerWidget(
                   title: 'Add new category',
-                    onTap: () {},pathIcon: 'assets/icons/add_icon.png',),
+                  pathIcon: 'assets/icons/add_icon.png',
+                  onTap: () {
+                    NavigatorHelper.navigatorHelper.pop();
+                    NavigatorHelper.navigatorHelper.push(
+                      AddUpdateCategoryPage(),
+                    );
+                  },
+                ),
               ],
             ),
           ),

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/models/category.dart';
 import 'package:notes_app/models/item_check.dart';
-import 'package:notes_app/ui/shared/theme_data.dart';
+import 'package:notes_app/data/theme_data.dart';
 
 class Note {
   String id;

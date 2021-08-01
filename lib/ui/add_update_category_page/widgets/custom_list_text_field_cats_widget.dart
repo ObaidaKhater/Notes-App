@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/note_data.dart';
-import 'package:notes_app/ui/shared/theme_data.dart';
+import 'package:notes_app/data/theme_data.dart';
 import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,11 +17,13 @@ class CustomListTextFieldCatsWidget extends StatelessWidget {
                 style: AppThemeData.theme.textSearchBoxHomePageTextStyle(),
                 decoration: InputDecoration(
                     prefixIcon: CustomButtonBottomAppBarWidget(
+                      heroTag: 'text'+category.title+'catPage',
                       onTap: null,
                       imagePath: 'assets/icons/category_icon.png',
                       size: 17,
                     ),
                     suffixIcon: CustomButtonBottomAppBarWidget(
+                      heroTag: 'delete'+category.title+'catPage',
                       onTap: () {},
                       imagePath: 'assets/icons/delete_icon.png',
                       size: 17,

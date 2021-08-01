@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/note_data.dart';
+import 'package:notes_app/helpers/navigator_helper.dart';
 import 'package:notes_app/ui/add_update_category_page/widgets/custom_list_text_field_cats_widget.dart';
-import 'package:notes_app/ui/shared/theme_data.dart';
+import 'package:notes_app/data/theme_data.dart';
 import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +21,8 @@ class AddUpdateCategoryPage extends StatelessWidget {
         ),
         backgroundColor: Color(NoteData.noteData.colorHexCode),
         leading: CustomButtonBottomAppBarWidget(
-          onTap: () {},
+          heroTag: 'backCatPage',
+          onTap: () => NavigatorHelper.navigatorHelper.pop(),
           imagePath: 'assets/icons/left_icon.png',
           size: 20,
         ),
@@ -35,6 +37,7 @@ class AddUpdateCategoryPage extends StatelessWidget {
                   style: AppThemeData.theme.textSearchBoxHomePageTextStyle(),
                   decoration: InputDecoration(
                       suffixIcon: CustomButtonBottomAppBarWidget(
+                        heroTag: 'addCatPage',
                         onTap: null,
                         imagePath: 'assets/icons/add_icon.png',
                         size:17,

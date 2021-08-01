@@ -18,15 +18,23 @@ class NavigatorHelper {
     );
   }
 
-  pop() {
-    navKey.currentState.pop();
+  pop({var values}) {
+    navKey.currentState.pop(values);
   }
 
-    pushChooseCategory() async {
-     navKey.currentState.pop();
-     Category category = await navKey.currentState.push(MaterialPageRoute(builder: (context){
-       return ChooseCategoryPage();
-     }));
-     NoteData.noteData.category =  category;
+  pushChooseCategory() async {
+    pop();
+    Category category =
+        await navKey.currentState.push(MaterialPageRoute(builder: (context) {
+      return ChooseCategoryPage();
+    }));
+    NoteData.noteData.category = category;
   }
+
+  pushReplacement(Widget widget) {
+    navKey.currentState.pushReplacement(
+      MaterialPageRoute(builder: (context) => widget),
+    );
+  }
+
 }

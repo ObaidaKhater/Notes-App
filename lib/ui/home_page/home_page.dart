@@ -6,7 +6,7 @@ import 'package:notes_app/ui/home_page/widgets/custom_drawar_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_floating_action_button_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_gridview_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_search_box_widget.dart';
-import 'package:notes_app/ui/shared/theme_data.dart';
+import 'package:notes_app/data/theme_data.dart';
 
 class HomePage extends StatefulWidget {
   @override

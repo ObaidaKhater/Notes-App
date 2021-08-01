@@ -2,15 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/data/note_data.dart';
+import 'package:notes_app/helpers/navigator_helper.dart';
 import 'package:notes_app/models/item_check.dart';
 import 'package:notes_app/models/note.dart';
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_bottom_app_bar_note_page_widget.dart';
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_checkbox_note_page_widget.dart';
-import 'package:notes_app/ui/home_page/widgets/custom_bottom_app_bar_widget.dart';
-import 'package:notes_app/ui/shared/theme_data.dart';
+import 'package:notes_app/data/theme_data.dart';
 import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
-import 'package:notes_app/ui/home_page/widgets/custom_checkbox_home_page_widget.dart';
-import 'package:notes_app/ui/home_page/widgets/custom_button_widget.dart';
 
 enum ActionOnPage { EDIT, ADD }
 
@@ -93,13 +91,15 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
         backgroundColor: Color(NoteData.noteData.colorHexCode),
         actions: [
           CustomButtonBottomAppBarWidget(
+            heroTag: 'doneNoteAppbar',
             onTap: () {},
             imagePath: 'assets/icons/done_icon.png',
             size: 20,
           ),
         ],
         leading: CustomButtonBottomAppBarWidget(
-          onTap: () {},
+          heroTag: 'backNoteAppbar',
+          onTap: () => NavigatorHelper.navigatorHelper.pop(),
           imagePath: 'assets/icons/left_icon.png',
           size: 20,
         ),
@@ -125,6 +125,7 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                         Align(
                           alignment: Alignment.bottomRight,
                           child: CustomButtonBottomAppBarWidget(
+                            heroTag:'deleteImageNotePage',
                             imagePath: 'assets/icons/close_icon.png',
                             onTap: () {
                               NoteData.noteData.imagePath = null;
@@ -209,6 +210,7 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                           Expanded(
                             flex: 1,
                             child: CustomButtonBottomAppBarWidget(
+                              heroTag: 'addCheckBoxNotePage',
                               onTap: () {
                                 if (NoteData.noteData.itemsCheck == null)
                                   NoteData.noteData.itemsCheck = [];
@@ -266,6 +268,7 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                         Transform.translate(
                           offset: Offset(-10, 5),
                           child: CustomButtonBottomAppBarWidget(
+                            heroTag: 'deleteCateNotePage',
                             imagePath: 'assets/icons/close_icon.png',
                             size: 13,
                             onTap: () {
