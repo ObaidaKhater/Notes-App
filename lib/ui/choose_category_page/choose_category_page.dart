@@ -30,7 +30,7 @@ class ChooseCategoryPage extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.only(top: 10.h, bottom: 10.h),
           child: Column(
-            children: NoteData.noteData.categories
+            children: NoteData.noteData.getAllCategories()
                 .map((category) => ListTile(
                       onTap: () =>
                           NavigatorHelper.navigatorHelper.pop(values: category),

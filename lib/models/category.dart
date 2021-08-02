@@ -1,8 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:notes_app/helpers/database_helper.dart';
 
 class Category {
-  String id;
+  int id;
   String title;
 
-  Category({@required this.id, @required this.title});
+  Category({this.id, this.title});
+
+  Category.fromMap(Map<String, dynamic> map) {
+    this.id = map[DbHelper.idCategoryColumn];
+    this.title = map[DbHelper.titleCategoryColumn];
+  }
+
+  toMap() {
+    return {
+      DbHelper.titleCategoryColumn: this.title,
+    };
+  }
 }

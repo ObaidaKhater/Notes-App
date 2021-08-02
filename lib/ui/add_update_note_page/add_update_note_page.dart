@@ -47,12 +47,12 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
       NoteData.noteData.title = widget.note.title;
       NoteData.noteData.description = widget.note.description;
       NoteData.noteData.imagePath = widget.note.imagePath;
-      NoteData.noteData.category = widget.note.category;
+   //   NoteData.noteData.category = widget.note.category;
       NoteData.noteData.colorHexCode = widget.note.colorHexCode;
-      NoteData.noteData.itemsCheck = widget.note.itemsCheck;
-      (widget.note.itemsCheck != null)
-          ? widget.isShowAddCheckBoxIcon = true
-          : widget.isShowAddCheckBoxIcon = false;
+    //  NoteData.noteData.itemsCheck = widget.note.itemsCheck;
+    //   (widget.note.itemsCheck != null)
+    //       ? widget.isShowAddCheckBoxIcon = true
+    //       : widget.isShowAddCheckBoxIcon = false;
     } else {
       _titleController = TextEditingController();
       _desController = TextEditingController();

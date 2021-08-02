@@ -66,63 +66,63 @@ class CustomItemGridviewWidget extends StatelessWidget {
             ),
 
             // Draw Description -----------------------------------------------------
-            (this.note.description != null && this.note.description.isNotEmpty)
-                ? Container(
-                    padding:
-                        EdgeInsets.only(left: 15.w, right: 5.w, bottom: 10.h),
-                    child: Text(
-                      this.note.description,
-                      maxLines: (this.note.itemsCheck != null) ? 3 : 25,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppThemeData.theme
-                          .descItemGridviewTextStyle(note.colorHexCode),
-                    ),
-                  )
-                : Container(),
-
-            // Draw Items Check -----------------------------------------------
-            (this.note.itemsCheck != null)
-                ? Container(
-                    padding:
-                        EdgeInsets.only(bottom: 5.h, left: 15.w, right: 5.w),
-                    child: Column(
-                      children: note.itemsCheck.map((itemCheck) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.h),
-                          child: CustomCheckBoxHomePageWidget(
-                            isDone: itemCheck.isDone,
-                            title: itemCheck.title,
-                            colorHexCode: this.note.colorHexCode,
-                          ),
-                        );
-                      }).toList(),
-                    ))
-                : Container(),
-
-            // Draw Category -----------------------------------------------------
-            (this.note.category != null)
-                ? Container(
-                    margin: EdgeInsets.only(top: 10.h, left: 15.w, right: 15.w),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      border: Border.all(
-                        color: (note.colorHexCode !=
-                                AppThemeData.theme.colorHexCard)
-                            ? Color(AppThemeData.theme.colorHexDescriptionLight)
-                            : Color(AppThemeData.theme.colorHexDescriptionDark),
-                      ),
-                    ),
-                    child: Text(
-                      this.note.category.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppThemeData.theme
-                          .titleCatHomePageTextStyle(this.note.colorHexCode),
-                    ),
-                  )
-                : Container(),
+            // (this.note.description != null && this.note.description.isNotEmpty)
+            //     ? Container(
+            //         padding:
+            //             EdgeInsets.only(left: 15.w, right: 5.w, bottom: 10.h),
+            //         child: Text(
+            //           this.note.description,
+            //           maxLines: (this.note.itemsCheck != null) ? 3 : 25,
+            //           overflow: TextOverflow.ellipsis,
+            //           style: AppThemeData.theme
+            //               .descItemGridviewTextStyle(note.colorHexCode),
+            //         ),
+            //       )
+            //     : Container(),
+            //
+            // // Draw Items Check -----------------------------------------------
+            // (this.note.itemsCheck != null)
+            //     ? Container(
+            //         padding:
+            //             EdgeInsets.only(bottom: 5.h, left: 15.w, right: 5.w),
+            //         child: Column(
+            //           children: note.itemsCheck.map((itemCheck) {
+            //             return Padding(
+            //               padding: EdgeInsets.symmetric(vertical: 5.h),
+            //               child: CustomCheckBoxHomePageWidget(
+            //                 isDone: itemCheck.isDone,
+            //                 title: itemCheck.title,
+            //                 colorHexCode: this.note.colorHexCode,
+            //               ),
+            //             );
+            //           }).toList(),
+            //         ))
+            //     : Container(),
+            //
+            // // Draw Category -----------------------------------------------------
+            // (this.note.category != null)
+            //     ? Container(
+            //         margin: EdgeInsets.only(top: 10.h, left: 15.w, right: 15.w),
+            //         padding:
+            //             EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(10.r),
+            //           border: Border.all(
+            //             color: (note.colorHexCode !=
+            //                     AppThemeData.theme.colorHexCard)
+            //                 ? Color(AppThemeData.theme.colorHexDescriptionLight)
+            //                 : Color(AppThemeData.theme.colorHexDescriptionDark),
+            //           ),
+            //         ),
+            //         child: Text(
+            //           this.note.category.title,
+            //           maxLines: 1,
+            //           overflow: TextOverflow.ellipsis,
+            //           style: AppThemeData.theme
+            //               .titleCatHomePageTextStyle(this.note.colorHexCode),
+            //         ),
+            //       )
+            //     : Container(),
           ],
         ),
       ),

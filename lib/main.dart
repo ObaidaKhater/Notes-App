@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/note_data.dart';
+import 'package:notes_app/helpers/database_helper.dart';
 import 'package:notes_app/helpers/navigator_helper.dart';
 import 'package:notes_app/ui/add_update_category_page/add_update_category_page.dart';
 import 'package:notes_app/ui/add_update_note_page/add_update_note_page.dart';
@@ -7,7 +8,9 @@ import 'package:notes_app/ui/choose_category_page/choose_category_page.dart';
 import 'package:notes_app/ui/home_page/home_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await DbHelper.dbHelper.initDatabase();
   runApp(MyApp());
 }
 
@@ -17,13 +20,8 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 739),
       builder: () => MaterialApp(
-        home: HomePage(),
+        home: AddUpdateCategoryPage(),
         navigatorKey: NavigatorHelper.navigatorHelper.navKey,
-        routes: {
-          '/addNote': (context) => AddUpdateNotePage(
-                actionOnPage: ActionOnPage.ADD,
-              )
-        },
         theme: ThemeData(
             primaryColor: Color(0xFFFFFFFF),
             cardColor: Color(0xFFFFFFFF),
