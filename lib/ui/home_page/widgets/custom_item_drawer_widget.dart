@@ -16,16 +16,21 @@ class CustomItemDrawerWidget extends StatelessWidget {
       onTap: this.onTap,
       child: Row(
         children: [
-          Text(
-            this.title,
-            style: AppThemeData.theme.titleCatDrawerTextStyle(),
+          Expanded(
+            flex: 4,
+            child: Text(
+              this.title,
+              style: AppThemeData.theme.titleCatDrawerTextStyle(),
+            ),
           ),
-          Spacer(),
-          CustomButtonBottomAppBarWidget(
-            heroTag: null,
-            imagePath: this.pathIcon,
-            onTap: null,
-            size: 18,
+          Expanded(
+            flex: 1,
+            child: CustomButtonBottomAppBarWidget(
+              heroTag: null,
+              imagePath: this.pathIcon,
+              onTap: null,
+              size: 18,
+            ),
           ),
         ],
       ),

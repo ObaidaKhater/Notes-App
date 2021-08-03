@@ -23,14 +23,14 @@ class CustomCheckBoxHomePageWidget extends StatelessWidget {
           child: Checkbox(
               side: BorderSide(
                 width: 1.r,
-                color: (this.colorHexCode != null)
+                color: (this.colorHexCode != AppThemeData.theme.colorHexCard)
                     ? Color(AppThemeData.theme.colorHexDescriptionLight)
                     : Color(AppThemeData.theme.colorHexDescriptionDark),
               ),
-              checkColor: (this.colorHexCode != null)
+              checkColor: (this.colorHexCode != AppThemeData.theme.colorHexCard)
                   ? Color(AppThemeData.theme.colorHoxBlack)
                   : Color(AppThemeData.theme.colorHexPrimary),
-              fillColor: (this.colorHexCode != null)
+              fillColor: (this.colorHexCode != AppThemeData.theme.colorHexCard)
                   ? MaterialStateProperty.all<Color>(
                       Color(AppThemeData.theme.colorHexPrimary),
                     )

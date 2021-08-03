@@ -129,16 +129,27 @@ class DbHelper {
   }
 
   // Update Note
-  updateNote(Note note) async {
-    await database.update(notesTableName, note.toMap(),
-        where: '$idNotesColumn=?', whereArgs: [note.id]);
-    if (NoteData.noteData.itemsCheck.length == 0) {
-      await deleteAllItemsCheckNote(note.id);
+  updateNote(Note oldNote) async {
+    Note note = Note(
+      title: NoteData.noteData.title,
+      description: NoteData.noteData.description,
+      colorHexCode: NoteData.noteData.colorHexCode,
+      categoryId: (NoteData.noteData.category == null)
+          ? null
+          : NoteData.noteData.category.id,
+      imagePath: NoteData.noteData.imagePath,
+    );
+
+    List<ItemCheck> itemsCheck = await getSpecificItemsCheck(oldNote.id);
+    if (itemsCheck.length > 0) {
+      await deleteAllItemsCheckNote(oldNote.id);
+      await insertListItemsCheck(oldNote.id);
     } else {
-      await deleteAllItemsCheckNote(note.id);
-      await insertListItemsCheck(note.id);
+      await insertListItemsCheck(oldNote.id);
     }
-    print('done update --------------------------------------');
+
+    await database.update(notesTableName, note.toMap(),
+        where: '$idNotesColumn=?', whereArgs: [oldNote.id]);
   }
 
   // Delete Note
@@ -152,6 +163,72 @@ class DbHelper {
   // Delete All Items Check To Note
   deleteAllItemsCheckNote(int noteId) async {
     await database.delete(itemsCheckTableName,
-        where: '$idNoteItemCheckColumn', whereArgs: [noteId]);
+        where: '$idNoteItemCheckColumn=?', whereArgs: [noteId]);
+    List<ItemCheck> itemsCheck = await getSpecificItemsCheck(noteId);
+    if (itemsCheck.length > 0) {
+      deleteAllItemsCheckNote(noteId);
+    }
+  }
+
+  // get All  Note Full Data
+  Future<List<Map<String, dynamic>>> getAllNote() async {
+    List<Map<String, dynamic>> notes = [];
+    List<Map<String, Object>> result = await database.query(notesTableName);
+    for (var item in result) {
+      Note note = Note.fromMap(item);
+      Category category;
+      (note.categoryId != null)
+          ? category = await getSpecificCategory(note.categoryId)
+          : null;
+      List<ItemCheck> itemsCheck = await getSpecificItemsCheck(note.id);
+      notes.add({
+        'note': note,
+        'category': category,
+        'itemsCheck': itemsCheck,
+      });
+    }
+    return notes;
+  }
+
+// Get Specific Category
+  Future<Category> getSpecificCategory(int categoryId) async {
+    List<Map<String, Object>> result = await database.query(categoriesTableName,
+        where: '$idCategoryColumn=?', whereArgs: [categoryId]);
+    Category category = Category.fromMap(result.first);
+    return category;
+  }
+
+  // Get Specific Items Check
+  Future<List<ItemCheck>> getSpecificItemsCheck(int noteId) async {
+    List<ItemCheck> itemsCheck = [];
+    List<Map<String, Object>> result = await database.query(itemsCheckTableName,
+        where: '$idNoteItemCheckColumn=?', whereArgs: [noteId]);
+    result.map((item) {
+      ItemCheck itemCheck = ItemCheck.fromMap(item);
+      itemsCheck.add(itemCheck);
+    }).toList();
+    return itemsCheck;
+  }
+
+  // get All  Note To Category Full Data
+  Future<List<Map<String, dynamic>>> getAllNoteToCategory(
+      int categoryId) async {
+    List<Map<String, dynamic>> notes = [];
+    List<Map<String, Object>> result = await database.query(notesTableName,
+        where: '$catIdNotesColumn=?', whereArgs: [categoryId]);
+    for (var item in result) {
+      Note note = Note.fromMap(item);
+      Category category;
+      (note.categoryId != null)
+          ? category = await getSpecificCategory(note.categoryId)
+          : null;
+      List<ItemCheck> itemsCheck = await getSpecificItemsCheck(note.id);
+      notes.add({
+        'note': note,
+        'category': category,
+        'itemsCheck': itemsCheck,
+      });
+    }
+    return notes;
   }
 }

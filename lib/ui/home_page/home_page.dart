@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:notes_app/data/note_data.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_app_bar_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_bottom_app_bar_widget.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_drawar_widget.dart';
@@ -17,20 +18,33 @@ class _HomePageState extends State<HomePage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isGridviewShow = false;
 
+
   toggleShowGridview(bool isGridviewShow) {
     _isGridviewShow = !isGridviewShow;
     setState(() {});
   }
 
+  toggleOnHomePage() {
+    setState(() {});
+  }
+
+@override
+  void initState() {
+    super.initState();
+    NoteData.noteData.currentCategoryId = null;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: CustomFloatingActionButtonWidget(),
+      floatingActionButton: CustomFloatingActionButtonWidget(toggleOnHomePage),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       backgroundColor: Color(AppThemeData.theme.colorHexBackground),
-      bottomNavigationBar: CustomBottomAppBarWidget(),
+      bottomNavigationBar:
+          CustomBottomAppBarWidget(toggleOnHomePage: toggleOnHomePage),
       key: _scaffoldKey,
-      drawer: CustomDrawerWidget(),
+      drawer: CustomDrawerWidget(
+        toggleOnHomePage: toggleOnHomePage,
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +56,8 @@ class _HomePageState extends State<HomePage> {
               isGridViewShow: _isGridviewShow,
             ),
             CustomGridviewWidget(
-              isGridviewShow: _isGridviewShow,
+                isGridviewShow: _isGridviewShow,
+                toggleOnHomePage: toggleOnHomePage,
             )
           ],
         ),

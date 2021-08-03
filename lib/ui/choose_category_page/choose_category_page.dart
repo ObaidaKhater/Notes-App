@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notes_app/data/note_data.dart';
 import 'package:notes_app/helpers/database_helper.dart';
 import 'package:notes_app/helpers/navigator_helper.dart';
 import 'package:notes_app/models/category.dart';
-import 'package:notes_app/ui/add_update_category_page/widgets/custom_list_text_field_cats_widget.dart';
 import 'package:notes_app/data/theme_data.dart';
 import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

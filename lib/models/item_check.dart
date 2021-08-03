@@ -8,6 +8,12 @@ class ItemCheck {
 
   ItemCheck({this.noteId, this.title, this.isDone});
 
+  ItemCheck.fromMap(Map<String, dynamic> map) {
+    this.noteId = map[DbHelper.idNoteItemCheckColumn];
+    this.title = map[DbHelper.titleItemCheckColumn];
+    this.isDone = (map[DbHelper.isDoneItemCheckColumn] == 1) ? true : false;
+  }
+
   toMap() {
     return {
       DbHelper.idNoteItemCheckColumn: this.noteId,

@@ -9,7 +9,7 @@ class AppThemeData {
   static AppThemeData theme = AppThemeData._();
   int colorHexPrimary = 0xFFFFFFFF;
   int colorHexDescriptionDark = 0xFF828A9B;
-  int colorHexDescriptionLight = 0xFFC1D3FF;
+  int colorHexDescriptionLight = 0xFFF2F3F4;
   int colorHexCard = 0xFF171C26;
   int colorHexBlue = 0xFF3269FF;
   int colorHexBackground = 0xFF0E121B;

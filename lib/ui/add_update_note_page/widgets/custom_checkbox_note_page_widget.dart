@@ -33,22 +33,22 @@ class _CustomCheckBoxNotePageWidgetState
                   side: BorderSide(
                     width: 1.r,
                     color: (NoteData.noteData.colorHexCode !=
-                            AppThemeData.theme.colorHexCard)
+                        AppThemeData.theme.colorHexCard)
                         ? Color(AppThemeData.theme.colorHexDescriptionLight)
                         : Color(AppThemeData.theme.colorHexDescriptionDark),
                   ),
                   checkColor: (NoteData.noteData.colorHexCode !=
-                          AppThemeData.theme.colorHexCard)
+                      AppThemeData.theme.colorHexCard)
                       ? Color(AppThemeData.theme.colorHoxBlack)
                       : Color(AppThemeData.theme.colorHexPrimary),
                   fillColor: (NoteData.noteData.colorHexCode !=
-                          AppThemeData.theme.colorHexCard)
+                      AppThemeData.theme.colorHexCard)
                       ? MaterialStateProperty.all<Color>(
-                          Color(AppThemeData.theme.colorHexPrimary),
-                        )
+                    Color(AppThemeData.theme.colorHexPrimary),
+                  )
                       : MaterialStateProperty.all<Color>(
-                          Color(AppThemeData.theme.colorHexBlue),
-                        ),
+                    Color(AppThemeData.theme.colorHexBlue),
+                  ),
                   value: widget.itemCheck.isDone,
                   shape: CircleBorder(),
                   onChanged: (newValue) {
@@ -72,13 +72,15 @@ class _CustomCheckBoxNotePageWidgetState
           Expanded(
             flex: 1,
             child: CustomButtonBottomAppBarWidget(
-              heroTag: 'deleteCheckBox'+widget.itemCheck.title,
-              imagePath: 'assets/icons/close_icon.png',
+              heroTag: 'deleteCheckBox' + widget.itemCheck.title,
+              imagePath: 'assets/icons/delete_icon.png',
               onTap: () {
-                NoteData.noteData.itemsCheck.remove(widget.itemCheck);
+                NoteData.noteData.itemsCheck.removeAt(1);
+                print(NoteData.noteData.itemsCheck);
+                print(widget.itemCheck.title+' < ---------------------------------');
                 widget.toggleOnNotePage();
               },
-              size: 18,
+              size: 17,
             ),
           ),
         ],

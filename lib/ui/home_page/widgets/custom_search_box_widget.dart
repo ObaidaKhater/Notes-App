@@ -28,9 +28,7 @@ class CustomSearchBoxWidget extends StatelessWidget {
         children: [
           CustomButtonWidget(
             icon: Icons.sort_rounded,
-            onPressed: () {
-              this.scaffoldKey.currentState.openDrawer();
-            },
+            onPressed: () => this.scaffoldKey.currentState.openDrawer(),
           ),
           Expanded(
             child: TextField(

@@ -13,6 +13,7 @@ class NoteData {
   String imagePath;
   Category category;
   List<ItemCheck> itemsCheck;
+  int currentCategoryId;
 
   // List<Note> notes = [
   //   Note(
@@ -117,8 +118,7 @@ class NoteData {
     return [];
   }
 
-
-  List<Category>getAllCategories(){
+  List<Category> getAllCategories() {
     return [];
   }
 }

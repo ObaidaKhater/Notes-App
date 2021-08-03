@@ -1,5 +1,10 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:notes_app/helpers/file_helper.dart';
 import 'package:notes_app/helpers/navigator_helper.dart';
 import 'package:notes_app/ui/add_update_category_page/add_update_category_page.dart';
 import 'package:notes_app/ui/add_update_note_page/add_update_note_page.dart';
@@ -8,6 +13,10 @@ import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.
 import 'package:notes_app/ui/home_page/widgets/custom_button_widget.dart';
 
 class CustomBottomAppBarWidget extends StatelessWidget {
+  Function toggleOnHomePage;
+
+  CustomBottomAppBarWidget({@required this.toggleOnHomePage});
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -28,12 +37,8 @@ class CustomBottomAppBarWidget extends StatelessWidget {
               CustomButtonBottomAppBarWidget(
                 heroTag: 'addCheckBottomHomePage',
                 imagePath: 'assets/icons/check_icon.png',
-                onTap: () {
-                  NavigatorHelper.navigatorHelper.push(AddUpdateNotePage(
-                    actionOnPage: ActionOnPage.ADD,
-                    isShowAddCheckBoxIcon: true,
-                  ));
-                },
+                onTap: () => NavigatorHelper.navigatorHelper
+                    .pushAddNoteWithCheckBoxOnNotePage(this.toggleOnHomePage),
               ),
               CustomButtonBottomAppBarWidget(
                 heroTag: 'micBottomHomePage',
@@ -42,7 +47,13 @@ class CustomBottomAppBarWidget extends StatelessWidget {
               ),
               CustomButtonBottomAppBarWidget(
                 heroTag: 'cameraBottomHomePage',
-                onTap: () {},
+                onTap: () async {
+                  File file = await FileHelper.fileHelper.getImage(
+                      ImageSource.camera, Random().nextInt(10000).toString());
+                  NavigatorHelper.navigatorHelper
+                      .pushAddNoteWithImageOnNotePage(
+                          toggleOnHomePage, file.path);
+                },
                 imagePath: 'assets/icons/camera_icon.png',
               ),
               CustomButtonBottomAppBarWidget(

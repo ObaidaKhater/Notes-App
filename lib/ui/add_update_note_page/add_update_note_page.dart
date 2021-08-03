@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,9 +22,16 @@ class AddUpdateNotePage extends StatefulWidget {
   Category noteCategory;
   List<ItemCheck> noteItemsCheck;
   bool isShowAddCheckBoxIcon;
+  String imagePath;
 
-  AddUpdateNotePage(
-      {@required this.actionOnPage, this.note, this.isShowAddCheckBoxIcon,this.noteCategory,this.noteItemsCheck});
+  AddUpdateNotePage({
+    @required this.actionOnPage,
+    this.note,
+    this.isShowAddCheckBoxIcon,
+    this.noteCategory,
+    this.noteItemsCheck,
+    this.imagePath,
+  });
 
   @override
   _AddUpdateNotePageState createState() => _AddUpdateNotePageState();
@@ -54,16 +63,16 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
       NoteData.noteData.category = widget.noteCategory;
       NoteData.noteData.colorHexCode = widget.note.colorHexCode;
       NoteData.noteData.itemsCheck = widget.noteItemsCheck;
-        (widget.noteItemsCheck.length != 0)
-            ? widget.isShowAddCheckBoxIcon = true
-            : widget.isShowAddCheckBoxIcon = false;
+      (widget.noteItemsCheck.length != 0)
+          ? widget.isShowAddCheckBoxIcon = true
+          : widget.isShowAddCheckBoxIcon = false;
     } else {
       _titleController = TextEditingController();
       _desController = TextEditingController();
       _checkboxController = TextEditingController();
       NoteData.noteData.title = '';
       NoteData.noteData.description = null;
-      NoteData.noteData.imagePath = null;
+      NoteData.noteData.imagePath = this.widget.imagePath;
       NoteData.noteData.category = null;
       NoteData.noteData.colorHexCode = AppThemeData.theme.colorHexCard;
       NoteData.noteData.itemsCheck = [];
@@ -89,7 +98,9 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
           _numCharacters,
           toggleOnNotePage,
           toggleShowAddCheckBoxIcon,
-          widget.isShowAddCheckBoxIcon),
+          widget.isShowAddCheckBoxIcon,
+          this.widget.note,
+          this.widget.actionOnPage),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Color(NoteData.noteData.colorHexCode),
@@ -98,17 +109,17 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
             heroTag: 'doneNoteAppbar',
             imagePath: 'assets/icons/done_icon.png',
             size: 20,
-            onTap: () async{
+            onTap: () async {
               if (widget.actionOnPage == ActionOnPage.ADD) {
                 NoteData.noteData.title = _titleController.text.trim();
                 NoteData.noteData.description = _desController.text.trim();
                 await DbHelper.dbHelper.insertNote();
-                // TODO: GO TO HOME PAGE
+                NavigatorHelper.navigatorHelper.pop();
               } else {
                 NoteData.noteData.title = _titleController.text.trim();
                 NoteData.noteData.description = _desController.text.trim();
-                // await DbHelper.dbHelper.updateNote(widget.note);
-                // TODO: GO TO HOME PAGE
+                await DbHelper.dbHelper.updateNote(widget.note);
+                NavigatorHelper.navigatorHelper.pop();
               }
             },
           ),
@@ -133,8 +144,8 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                       children: [
                         Container(
                           width: MediaQuery.of(context).size.width,
-                          child: Image.asset(
-                            NoteData.noteData.imagePath,
+                          child: Image.file(
+                            File(NoteData.noteData.imagePath),
                             fit: BoxFit.cover,
                           ),
                         ),

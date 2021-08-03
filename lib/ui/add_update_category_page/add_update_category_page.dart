@@ -36,14 +36,14 @@ class _AddUpdateCategoryPageState extends State<AddUpdateCategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(NoteData.noteData.colorHexCode),
+      backgroundColor: Color(AppThemeData.theme.colorHexBackground),
       appBar: AppBar(
         elevation: 0,
         title: Text(
           'Update Categories',
           style: AppThemeData.theme.titleCatPageTextStyle(),
         ),
-        backgroundColor: Color(NoteData.noteData.colorHexCode),
+        backgroundColor: Color(AppThemeData.theme.colorHexBackground),
         leading: CustomButtonBottomAppBarWidget(
           heroTag: 'backCatPage',
           onTap: () => NavigatorHelper.navigatorHelper.pop(),
