@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 739),
       builder: () => MaterialApp(
-        home: AddUpdateCategoryPage(),
+        home: AddUpdateNotePage(actionOnPage: ActionOnPage.ADD,isShowAddCheckBoxIcon: false,),
         navigatorKey: NavigatorHelper.navigatorHelper.navKey,
         theme: ThemeData(
             primaryColor: Color(0xFFFFFFFF),

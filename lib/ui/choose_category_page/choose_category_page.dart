@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/note_data.dart';
+import 'package:notes_app/helpers/database_helper.dart';
 import 'package:notes_app/helpers/navigator_helper.dart';
+import 'package:notes_app/models/category.dart';
 import 'package:notes_app/ui/add_update_category_page/widgets/custom_list_text_field_cats_widget.dart';
 import 'package:notes_app/data/theme_data.dart';
 import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
@@ -26,33 +28,52 @@ class ChooseCategoryPage extends StatelessWidget {
           size: 20,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.only(top: 10.h, bottom: 10.h),
-          child: Column(
-            children: NoteData.noteData.getAllCategories()
-                .map((category) => ListTile(
-                      onTap: () =>
-                          NavigatorHelper.navigatorHelper.pop(values: category),
-                      title: Padding(
-                        padding: EdgeInsets.only(left: 10.w),
-                        child: Text(
-                          category.title,
-                          style: AppThemeData.theme
-                              .textSearchBoxHomePageTextStyle(),
-                        ),
+      body: FutureBuilder<List<Category>>(
+          future: DbHelper.dbHelper.getAllCategories(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+              case ConnectionState.waiting:
+                return CircularProgressIndicator();
+                break;
+              case ConnectionState.done:
+              case ConnectionState.active:
+                if (!snapshot.hasError) {
+                  return Container(
+                    margin: EdgeInsets.only(top: 10.h, bottom: 10.h),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: snapshot.data
+                            .map((category) => ListTile(
+                                  onTap: () => NavigatorHelper.navigatorHelper
+                                      .pop(values: category),
+                                  title: Padding(
+                                    padding: EdgeInsets.only(left: 10.w),
+                                    child: Text(
+                                      category.title,
+                                      style: AppThemeData.theme
+                                          .textSearchBoxHomePageTextStyle(),
+                                    ),
+                                  ),
+                                  trailing: CustomButtonBottomAppBarWidget(
+                                    heroTag: null,
+                                    onTap: null,
+                                    imagePath: 'assets/icons/category_icon.png',
+                                    size: 17,
+                                  ),
+                                ))
+                            .toList(),
                       ),
-                      trailing: CustomButtonBottomAppBarWidget(
-                        heroTag: null,
-                        onTap: null,
-                        imagePath: 'assets/icons/category_icon.png',
-                        size: 17,
-                      ),
-                    ))
-                .toList(),
-          ),
-        ),
-      ),
+                    ),
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
+                break;
+              default:
+                return CircularProgressIndicator();
+            }
+          }),
     );
   }
 }

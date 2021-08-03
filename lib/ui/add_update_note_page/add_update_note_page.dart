@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/data/note_data.dart';
+import 'package:notes_app/helpers/database_helper.dart';
 import 'package:notes_app/helpers/navigator_helper.dart';
+import 'package:notes_app/models/category.dart';
 import 'package:notes_app/models/item_check.dart';
 import 'package:notes_app/models/note.dart';
 import 'package:notes_app/ui/add_update_note_page/widgets/custom_bottom_app_bar_note_page_widget.dart';
@@ -15,10 +17,12 @@ enum ActionOnPage { EDIT, ADD }
 class AddUpdateNotePage extends StatefulWidget {
   ActionOnPage actionOnPage;
   Note note;
+  Category noteCategory;
+  List<ItemCheck> noteItemsCheck;
   bool isShowAddCheckBoxIcon;
 
   AddUpdateNotePage(
-      {@required this.actionOnPage, this.note, this.isShowAddCheckBoxIcon});
+      {@required this.actionOnPage, this.note, this.isShowAddCheckBoxIcon,this.noteCategory,this.noteItemsCheck});
 
   @override
   _AddUpdateNotePageState createState() => _AddUpdateNotePageState();
@@ -47,12 +51,12 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
       NoteData.noteData.title = widget.note.title;
       NoteData.noteData.description = widget.note.description;
       NoteData.noteData.imagePath = widget.note.imagePath;
-   //   NoteData.noteData.category = widget.note.category;
+      NoteData.noteData.category = widget.noteCategory;
       NoteData.noteData.colorHexCode = widget.note.colorHexCode;
-    //  NoteData.noteData.itemsCheck = widget.note.itemsCheck;
-    //   (widget.note.itemsCheck != null)
-    //       ? widget.isShowAddCheckBoxIcon = true
-    //       : widget.isShowAddCheckBoxIcon = false;
+      NoteData.noteData.itemsCheck = widget.noteItemsCheck;
+        (widget.noteItemsCheck.length != 0)
+            ? widget.isShowAddCheckBoxIcon = true
+            : widget.isShowAddCheckBoxIcon = false;
     } else {
       _titleController = TextEditingController();
       _desController = TextEditingController();
@@ -62,7 +66,7 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
       NoteData.noteData.imagePath = null;
       NoteData.noteData.category = null;
       NoteData.noteData.colorHexCode = AppThemeData.theme.colorHexCard;
-      NoteData.noteData.itemsCheck = null;
+      NoteData.noteData.itemsCheck = [];
       (widget.isShowAddCheckBoxIcon == null)
           ? widget.isShowAddCheckBoxIcon = false
           : widget.isShowAddCheckBoxIcon = widget.isShowAddCheckBoxIcon;
@@ -92,9 +96,21 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
         actions: [
           CustomButtonBottomAppBarWidget(
             heroTag: 'doneNoteAppbar',
-            onTap: () {},
             imagePath: 'assets/icons/done_icon.png',
             size: 20,
+            onTap: () async{
+              if (widget.actionOnPage == ActionOnPage.ADD) {
+                NoteData.noteData.title = _titleController.text.trim();
+                NoteData.noteData.description = _desController.text.trim();
+                await DbHelper.dbHelper.insertNote();
+                // TODO: GO TO HOME PAGE
+              } else {
+                NoteData.noteData.title = _titleController.text.trim();
+                NoteData.noteData.description = _desController.text.trim();
+                // await DbHelper.dbHelper.updateNote(widget.note);
+                // TODO: GO TO HOME PAGE
+              }
+            },
           ),
         ],
         leading: CustomButtonBottomAppBarWidget(
@@ -125,7 +141,7 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
                         Align(
                           alignment: Alignment.bottomRight,
                           child: CustomButtonBottomAppBarWidget(
-                            heroTag:'deleteImageNotePage',
+                            heroTag: 'deleteImageNotePage',
                             imagePath: 'assets/icons/close_icon.png',
                             onTap: () {
                               NoteData.noteData.imagePath = null;
