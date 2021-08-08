@@ -20,6 +20,8 @@ class CustomCheckBoxNotePageWidget extends StatefulWidget {
 
 class _CustomCheckBoxNotePageWidgetState
     extends State<CustomCheckBoxNotePageWidget> {
+  FocusNode focusNode =   FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,22 +35,22 @@ class _CustomCheckBoxNotePageWidgetState
                   side: BorderSide(
                     width: 1.r,
                     color: (NoteData.noteData.colorHexCode !=
-                        AppThemeData.theme.colorHexCard)
+                            AppThemeData.theme.colorHexCard)
                         ? Color(AppThemeData.theme.colorHexDescriptionLight)
                         : Color(AppThemeData.theme.colorHexDescriptionDark),
                   ),
                   checkColor: (NoteData.noteData.colorHexCode !=
-                      AppThemeData.theme.colorHexCard)
+                          AppThemeData.theme.colorHexCard)
                       ? Color(AppThemeData.theme.colorHoxBlack)
                       : Color(AppThemeData.theme.colorHexPrimary),
                   fillColor: (NoteData.noteData.colorHexCode !=
-                      AppThemeData.theme.colorHexCard)
+                          AppThemeData.theme.colorHexCard)
                       ? MaterialStateProperty.all<Color>(
-                    Color(AppThemeData.theme.colorHexPrimary),
-                  )
+                          Color(AppThemeData.theme.colorHexPrimary),
+                        )
                       : MaterialStateProperty.all<Color>(
-                    Color(AppThemeData.theme.colorHexBlue),
-                  ),
+                          Color(AppThemeData.theme.colorHexBlue),
+                        ),
                   value: widget.itemCheck.isDone,
                   shape: CircleBorder(),
                   onChanged: (newValue) {
@@ -61,12 +63,17 @@ class _CustomCheckBoxNotePageWidgetState
           Expanded(
             flex: 3,
             child: TextFormField(
+              focusNode: focusNode,
               initialValue: widget.itemCheck.title,
-              style: AppThemeData.theme.descriptionNotePageTextStyle(),
+              style: AppThemeData.theme
+                  .textCheckBocNotePageTextStyle(widget.itemCheck.isDone),
               keyboardType: TextInputType.multiline,
               maxLines: null,
               onChanged: (value) => widget.itemCheck.title = value,
-              decoration: InputDecoration(border: InputBorder.none),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  suffix:
+                      (focusNode.hasFocus) ? Icon(Icons.ac_unit,color: Colors.red,) : Container(width: 0,height: 0,)),
             ),
           ),
           Expanded(
@@ -75,9 +82,11 @@ class _CustomCheckBoxNotePageWidgetState
               heroTag: 'deleteCheckBox' + widget.itemCheck.title,
               imagePath: 'assets/icons/delete_icon.png',
               onTap: () {
-                NoteData.noteData.itemsCheck.removeAt(1);
-                print(NoteData.noteData.itemsCheck);
-                print(widget.itemCheck.title+' < ---------------------------------');
+                print(widget.itemCheck.title);
+                NoteData.noteData.itemsCheck.remove(widget.itemCheck);
+                // NoteData.noteData.itemsCheck.forEach((element) {print(element.title); });
+                // print(widget.itemCheck.title +
+                //     ' < ---------------------------------');
                 widget.toggleOnNotePage();
               },
               size: 17,

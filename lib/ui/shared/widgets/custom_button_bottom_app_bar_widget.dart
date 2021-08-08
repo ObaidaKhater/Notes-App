@@ -13,12 +13,13 @@ class CustomButtonBottomAppBarWidget extends StatelessWidget {
       @required this.imagePath,
       @required this.heroTag,
       this.size});
-
+final String x = 'obaidakh';
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: this.onTap,
-      heroTag: null,
+      heroTag: x,
+
       backgroundColor: Colors.transparent,
       elevation: 0,
       child: Image.asset(

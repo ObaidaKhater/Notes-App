@@ -29,7 +29,17 @@ class AppThemeData {
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 18.sp,
+
       );
+
+  TextStyle textCheckBocNotePageTextStyle(bool isDone) => TextStyle(
+    color: (NoteData.noteData.colorHexCode == colorHexCard)
+        ? Color(colorHexDescriptionDark)
+        : Color(colorHexDescriptionLight),
+    fontSize: 18.sp,
+    decoration:(isDone)? TextDecoration.lineThrough:null,
+
+  );
 
   TextStyle dateAndNumCharactersTextStyle() => TextStyle(
         color: (NoteData.noteData.colorHexCode == colorHexCard)

@@ -205,11 +205,13 @@ class _AddUpdateNotePageState extends State<AddUpdateNotePage> {
               // Draw List CheckBox --------------------------------------------------------
               (NoteData.noteData.itemsCheck != null)
                   ? Column(
-                      children: NoteData.noteData.itemsCheck
-                          .map((itemCheck) => CustomCheckBoxNotePageWidget(
-                              itemCheck: itemCheck,
-                              toggleOnNotePage: toggleOnNotePage))
-                          .toList(),
+                      children:
+                        NoteData.noteData.itemsCheck
+                            .map((itemCheck) => CustomCheckBoxNotePageWidget(
+                                  itemCheck: itemCheck,
+                                  toggleOnNotePage: toggleOnNotePage,
+                                ))
+                            .toList(),
                     )
                   : Container(),
 

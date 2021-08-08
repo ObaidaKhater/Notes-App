@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 739),
       builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: HomePage(),
         navigatorKey: NavigatorHelper.navigatorHelper.navKey,
         theme: ThemeData(
