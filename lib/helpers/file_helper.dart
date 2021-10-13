@@ -16,4 +16,13 @@ class FileHelper {
      File newImage = await file.copy('$path');
     return newImage;
   }
+
+
+
+  Future<File> saveImageInDevice(File file,imageName) async {
+    Directory directory = await getApplicationDocumentsDirectory();
+    String path = directory.path + '/$imageName.png';
+    File newImage = await file.copy('$path');
+    return newImage;
+  }
 }

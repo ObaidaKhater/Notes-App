@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/theme_data.dart';
-import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
+import 'package:notes_app/ui/shared/widgets/custom_icon_button_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomItemButtonMenuWidget extends StatelessWidget {
@@ -20,8 +20,8 @@ class CustomItemButtonMenuWidget extends StatelessWidget {
     return GestureDetector(
       onTap: this.onTap,
       child: ListTile(
-        leading: CustomButtonBottomAppBarWidget(
-          heroTag: 'icon'+this.title+'menuPage',
+        leading: CustomIconButtonWidget(
+
           onTap: null,
           imagePath: this.iconPath,
           size: this.size,

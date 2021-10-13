@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/data/note_data.dart';
+import 'package:notes_app/helpers/route_helper.dart';
+import 'package:notes_app/providers/home_provider.dart';
+import 'package:notes_app/providers/note_provider.dart';
+import 'package:provider/provider.dart';
 
 class AppThemeData {
   AppThemeData._();
@@ -25,7 +29,7 @@ class AppThemeData {
       );
 
   TextStyle descriptionNotePageTextStyle() => TextStyle(
-        color: (NoteData.noteData.colorHexCode == colorHexCard)
+        color: (Provider.of<NoteProvider>(RouteHelper.routeHelper.navKey.currentContext).colorHexCode == colorHexCard)
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 18.sp,
@@ -33,7 +37,7 @@ class AppThemeData {
       );
 
   TextStyle textCheckBocNotePageTextStyle(bool isDone) => TextStyle(
-    color: (NoteData.noteData.colorHexCode == colorHexCard)
+    color: (Provider.of<NoteProvider>(RouteHelper.routeHelper.navKey.currentContext).colorHexCode == colorHexCard)
         ? Color(colorHexDescriptionDark)
         : Color(colorHexDescriptionLight),
     fontSize: 18.sp,
@@ -42,7 +46,7 @@ class AppThemeData {
   );
 
   TextStyle dateAndNumCharactersTextStyle() => TextStyle(
-        color: (NoteData.noteData.colorHexCode == colorHexCard)
+        color: (Provider.of<NoteProvider>(RouteHelper.routeHelper.navKey.currentContext).colorHexCode == colorHexCard)
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 12.sp,
@@ -116,16 +120,21 @@ class AppThemeData {
       );
 
   TextStyle hintAddCheckBoxTextField() => TextStyle(
-        color: (NoteData.noteData.colorHexCode == colorHexCard)
+        color: (Provider.of<NoteProvider>(RouteHelper.routeHelper.navKey.currentContext).colorHexCode == colorHexCard)
             ? Color(colorHexDescriptionDark)
             : Color(colorHexDescriptionLight),
         fontSize: 18.sp,
       );
 
   TextStyle titleCatNotePageTextStyle() => TextStyle(
-    color: (NoteData.noteData.colorHexCode == colorHexCard)
+    color: (Provider.of<NoteProvider>(RouteHelper.routeHelper.navKey.currentContext).colorHexCode == colorHexCard)
         ? Color(colorHexDescriptionDark)
         : Color(colorHexDescriptionLight),
     fontSize: 14.sp,
+  );
+
+  TextStyle hintTextStyle() => TextStyle(
+    color: Color(colorHexPrimary).withOpacity(0.7),
+    fontSize: 16.sp,
   );
 }

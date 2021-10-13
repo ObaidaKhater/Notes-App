@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/helpers/database_helper.dart';
-import 'package:notes_app/helpers/navigator_helper.dart';
+import 'package:notes_app/helpers/route_helper.dart';
 import 'package:notes_app/models/category.dart';
 import 'package:notes_app/data/theme_data.dart';
-import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
+import 'package:notes_app/ui/shared/widgets/custom_icon_button_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChooseCategoryPage extends StatelessWidget {
@@ -19,9 +19,8 @@ class ChooseCategoryPage extends StatelessWidget {
           style: AppThemeData.theme.titleCatPageTextStyle(),
         ),
         backgroundColor: Color(AppThemeData.theme.colorHexBackground),
-        leading: CustomButtonBottomAppBarWidget(
-          heroTag: 'backChoosePage',
-          onTap: () => NavigatorHelper.navigatorHelper.pop(),
+        leading: CustomIconButtonWidget(
+          onTap: () => RouteHelper.routeHelper.pop(),
           imagePath: 'assets/icons/left_icon.png',
           size: 20,
         ),
@@ -43,7 +42,7 @@ class ChooseCategoryPage extends StatelessWidget {
                       child: Column(
                         children: snapshot.data
                             .map((category) => ListTile(
-                                  onTap: () => NavigatorHelper.navigatorHelper
+                                  onTap: () => RouteHelper.routeHelper
                                       .pop(values: category),
                                   title: Padding(
                                     padding: EdgeInsets.only(left: 10.w),
@@ -53,8 +52,7 @@ class ChooseCategoryPage extends StatelessWidget {
                                           .textSearchBoxHomePageTextStyle(),
                                     ),
                                   ),
-                                  trailing: CustomButtonBottomAppBarWidget(
-                                    heroTag: null,
+                                  trailing: CustomIconButtonWidget(
                                     onTap: null,
                                     imagePath: 'assets/icons/category_icon.png',
                                     size: 17,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/data/theme_data.dart';
-import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
+import 'package:notes_app/ui/shared/widgets/custom_icon_button_widget.dart';
 
 class CustomItemDrawerWidget extends StatelessWidget {
   String title;
@@ -25,8 +25,7 @@ class CustomItemDrawerWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: CustomButtonBottomAppBarWidget(
-              heroTag: null,
+            child: CustomIconButtonWidget(
               imagePath: this.pathIcon,
               onTap: null,
               size: 18,

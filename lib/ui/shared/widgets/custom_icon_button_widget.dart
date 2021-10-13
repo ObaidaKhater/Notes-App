@@ -2,27 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/data/theme_data.dart';
 
-class CustomButtonBottomAppBarWidget extends StatelessWidget {
+class CustomIconButtonWidget extends StatelessWidget {
   Function onTap;
   String imagePath;
   double size;
-  String heroTag;
 
-  CustomButtonBottomAppBarWidget(
+  CustomIconButtonWidget(
       {@required this.onTap,
       @required this.imagePath,
-      @required this.heroTag,
       this.size});
-final String x = 'obaidakh';
+
+  final String x = null;
+
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
+    return IconButton(
       onPressed: this.onTap,
-      heroTag: x,
-
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      child: Image.asset(
+      icon: Image.asset(
         this.imagePath,
         width: (size == null) ? 27.w : this.size.w,
         height: (size == null) ? 27.h : this.size.h,

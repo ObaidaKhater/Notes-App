@@ -35,6 +35,9 @@ dependencies:
   sqflite: ^2.0.0+3
   share: ^2.0.4
   image_picker: ^0.8.2
+  provider: ^5.0.0
+  painter: ^2.0.0
+  flutter_colorpicker: ^0.6.0
 
 dev_dependencies:
   flutter_test:

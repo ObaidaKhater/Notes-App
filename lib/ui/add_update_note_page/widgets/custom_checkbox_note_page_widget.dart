@@ -4,96 +4,80 @@ import 'package:notes_app/models/item_check.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/models/note.dart';
 import 'package:notes_app/data/theme_data.dart';
-import 'package:notes_app/ui/shared/widgets/custom_button_bottom_app_bar_widget.dart';
+import 'package:notes_app/providers/home_provider.dart';
+import 'package:notes_app/providers/note_provider.dart';
+import 'package:notes_app/ui/shared/widgets/custom_icon_button_widget.dart';
+import 'package:provider/provider.dart';
 
-class CustomCheckBoxNotePageWidget extends StatefulWidget {
+class CustomCheckBoxNotePageWidget extends StatelessWidget {
   ItemCheck itemCheck;
-  Function toggleOnNotePage;
 
-  CustomCheckBoxNotePageWidget(
-      {@required this.itemCheck, @required this.toggleOnNotePage});
-
-  @override
-  _CustomCheckBoxNotePageWidgetState createState() =>
-      _CustomCheckBoxNotePageWidgetState();
-}
-
-class _CustomCheckBoxNotePageWidgetState
-    extends State<CustomCheckBoxNotePageWidget> {
-  FocusNode focusNode =   FocusNode();
+  CustomCheckBoxNotePageWidget({@required this.itemCheck});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Transform.scale(
-              scale: 1.1.r,
-              child: Checkbox(
-                  side: BorderSide(
-                    width: 1.r,
-                    color: (NoteData.noteData.colorHexCode !=
+    return Consumer<NoteProvider>(builder: (context, provider, x) {
+      return Container(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Transform.scale(
+                scale: 1.1.r,
+                child: Checkbox(
+                    side: BorderSide(
+                      width: 1.r,
+                      color: (provider.colorHexCode !=
+                              AppThemeData.theme.colorHexCard)
+                          ? Color(AppThemeData.theme.colorHexDescriptionLight)
+                          : Color(AppThemeData.theme.colorHexDescriptionDark),
+                    ),
+                    checkColor: (provider.colorHexCode !=
                             AppThemeData.theme.colorHexCard)
-                        ? Color(AppThemeData.theme.colorHexDescriptionLight)
-                        : Color(AppThemeData.theme.colorHexDescriptionDark),
-                  ),
-                  checkColor: (NoteData.noteData.colorHexCode !=
-                          AppThemeData.theme.colorHexCard)
-                      ? Color(AppThemeData.theme.colorHoxBlack)
-                      : Color(AppThemeData.theme.colorHexPrimary),
-                  fillColor: (NoteData.noteData.colorHexCode !=
-                          AppThemeData.theme.colorHexCard)
-                      ? MaterialStateProperty.all<Color>(
-                          Color(AppThemeData.theme.colorHexPrimary),
-                        )
-                      : MaterialStateProperty.all<Color>(
-                          Color(AppThemeData.theme.colorHexBlue),
-                        ),
-                  value: widget.itemCheck.isDone,
-                  shape: CircleBorder(),
-                  onChanged: (newValue) {
-                    widget.itemCheck.isDone = newValue;
-                    setState(() {});
-                  }),
+                        ? Color(AppThemeData.theme.colorHoxBlack)
+                        : Color(AppThemeData.theme.colorHexPrimary),
+                    fillColor: (provider.colorHexCode !=
+                            AppThemeData.theme.colorHexCard)
+                        ? MaterialStateProperty.all<Color>(
+                            Color(AppThemeData.theme.colorHexPrimary),
+                          )
+                        : MaterialStateProperty.all<Color>(
+                            Color(AppThemeData.theme.colorHexBlue),
+                          ),
+                    value:this.itemCheck.isDone,
+                    shape: CircleBorder(),
+                    onChanged: (newValue) {
+                      this.itemCheck.isDone = newValue;
+                      provider.changeValueItemCheck();
+                    }),
+              ),
             ),
-          ),
-          SizedBox(width: 8.w),
-          Expanded(
-            flex: 3,
-            child: TextFormField(
-              focusNode: focusNode,
-              initialValue: widget.itemCheck.title,
-              style: AppThemeData.theme
-                  .textCheckBocNotePageTextStyle(widget.itemCheck.isDone),
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              onChanged: (value) => widget.itemCheck.title = value,
-              decoration: InputDecoration(
+            SizedBox(width: 8.w),
+            Expanded(
+              flex: 3,
+              child: TextFormField(
+                initialValue: this.itemCheck.title,
+                style: AppThemeData.theme
+                    .textCheckBocNotePageTextStyle(this.itemCheck.isDone),
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                onChanged: (value) => this.itemCheck.title = value,
+                decoration: InputDecoration(
                   border: InputBorder.none,
-                  suffix:
-                      (focusNode.hasFocus) ? Icon(Icons.ac_unit,color: Colors.red,) : Container(width: 0,height: 0,)),
+                ),
+              ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: CustomButtonBottomAppBarWidget(
-              heroTag: 'deleteCheckBox' + widget.itemCheck.title,
-              imagePath: 'assets/icons/delete_icon.png',
-              onTap: () {
-                print(widget.itemCheck.title);
-                NoteData.noteData.itemsCheck.remove(widget.itemCheck);
-                // NoteData.noteData.itemsCheck.forEach((element) {print(element.title); });
-                // print(widget.itemCheck.title +
-                //     ' < ---------------------------------');
-                widget.toggleOnNotePage();
-              },
-              size: 17,
+            Expanded(
+              flex: 1,
+              child: CustomIconButtonWidget(
+                imagePath: 'assets/icons/delete_icon.png',
+                onTap: () => provider.removeItemCheckBox(this.itemCheck),
+                size: 17,
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 }

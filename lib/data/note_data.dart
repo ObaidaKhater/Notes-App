@@ -7,11 +7,5 @@ class NoteData {
 
   static NoteData noteData = NoteData._();
 
-  int colorHexCode = 0xFF0E121B;
-  String title;
-  String description;
-  String imagePath;
-  Category category;
-  List<ItemCheck> itemsCheck;
-  int currentCategoryId;
+
 }

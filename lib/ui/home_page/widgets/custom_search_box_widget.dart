@@ -1,65 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes_app/data/theme_data.dart';
+import 'package:notes_app/providers/home_provider.dart';
 import 'package:notes_app/ui/home_page/widgets/custom_button_widget.dart';
+import 'package:provider/provider.dart';
 
 class CustomSearchBoxWidget extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey;
-  Function toggleFunction;
-  bool isGridViewShow;
+  GlobalKey<ScaffoldState> scKey;
 
-  CustomSearchBoxWidget(
-      {@required this.scaffoldKey,
-      @required this.toggleFunction,
-      @required this.isGridViewShow});
+  CustomSearchBoxWidget(this.scKey);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15.w),
-      padding: EdgeInsets.symmetric(horizontal: 5.w),
-      height: 50.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25.r),
-        color: Color(AppThemeData.theme.colorHexCard),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomButtonWidget(
-            icon: Icons.sort_rounded,
-            onPressed: () => this.scaffoldKey.currentState.openDrawer(),
-          ),
-          Expanded(
-            child: TextField(
-              style: AppThemeData.theme.textSearchBoxHomePageTextStyle(),
-              decoration: InputDecoration(
-                  hintStyle:
-                      AppThemeData.theme.hintTextSearchBoxHomePageTextStyle(),
-                  hintText: 'Search your notes',
-                  border: InputBorder.none),
-            ),
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CustomButtonWidget(
-                onPressed: () {
-                  this.toggleFunction(this.isGridViewShow);
-                },
-                icon: (!this.isGridViewShow)
-                    ? Icons.view_agenda_outlined
-                    : Icons.grid_view_outlined,
+    return Consumer<HomeProvider>(builder: (context, homeProvider, x) {
+      return Container(
+        margin: EdgeInsets.symmetric(horizontal: 15.w),
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        height: 50.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25.r),
+          color: Color(AppThemeData.theme.colorHexCard),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: CustomButtonWidget(
+                icon: Icons.sort_rounded,
+                onPressed: () => scKey.currentState.openDrawer(),
               ),
-              CircleAvatar(
-                radius: 18.r,
-                backgroundImage: ExactAssetImage('assets/images/user_logo.png'),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+            Expanded(
+              flex: 4,
+              child: TextField(
+                style: AppThemeData.theme.textSearchBoxHomePageTextStyle(),
+                onChanged: (value) => homeProvider.setSearchToNoteValue(value),
+                decoration: InputDecoration(
+                    hintStyle:
+                        AppThemeData.theme.hintTextSearchBoxHomePageTextStyle(),
+                    hintText: 'Search your notes',
+                    border: InputBorder.none),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Row(
+                children: [
+                  CustomButtonWidget(
+                    onPressed: () => homeProvider.changeGridViewShowType(),
+                    icon: (!homeProvider.isGridviewShow)
+                        ? Icons.view_agenda_outlined
+                        : Icons.grid_view_outlined,
+                  ),
+                  CircleAvatar(
+                    radius: 18.r,
+                    backgroundImage:
+                        ExactAssetImage('assets/images/user_logo.png'),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
